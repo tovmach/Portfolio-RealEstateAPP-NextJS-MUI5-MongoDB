@@ -72,7 +72,7 @@ const PropertySearchBar = () => {
               setMin('')
               setMax('')
               setMinList(
-                event.target.value == 'Buy' ? buyPriceList : rentPriceList
+                event.target.value === 'buy' ? buyPriceList : rentPriceList
               )
             }}
             value={operation}
