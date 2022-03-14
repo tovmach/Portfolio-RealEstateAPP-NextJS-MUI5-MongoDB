@@ -18,7 +18,7 @@ const Footer = () => {
           <Grid item>
             <Typography
               sx={{
-                a: { textDecoration: 'none', color: '#64FFDA' },
+                a: { textDecoration: 'none', color: 'primary.main' },
                 fontSize: 15,
               }}
             >

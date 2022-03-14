@@ -4,13 +4,13 @@ export default createTheme({
   palette: {
     type: 'light',
     primary: {
-      main: '#009688',
+      main: '#1A626D',
     },
     secondary: {
-      main: '#546e7a',
+      main: '#2DA7BA',
     },
     background: {
-      default: '#e0f2f1',
+      default: '#EBF1F5',
     },
   },
 })
