@@ -37,6 +37,8 @@ const DesktopNav = () => {
               RealEstate
             </Button> */}
             <Box
+              component={Link}
+              href={'/'}
               sx={{
                 display: 'inline-block',
               }}

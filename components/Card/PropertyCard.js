@@ -25,18 +25,31 @@ import BathroomIcon from '../svg/Card/BathroomIcon'
 import Link from '../Link'
 import Image from 'next/image'
 
-const PropertyCard = ({ price, m2, bedroom, bathroom, id, src, location }) => {
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+const numberWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+}
+
+const PropertyCard = ({
+  price,
+  livingArea,
+  bedroom,
+  bathroom,
+  _id,
+  img,
+  type,
+  city,
+  province,
+}) => {
   return (
     <Card sx={{ maxWidth: 350 }}>
       {/* <CardMedia component='img' height='250' image={src} alt='Paella dish' /> */}
-      <CardMedia component={Link} href={`/properties/${id}`}>
-        <Image
-          src={src}
-          alt={`Property ${location}`}
-          width={350}
-          height={250}
-        />
-      </CardMedia>
+      {/* <CardMedia component={Link} href={`/properties/${_id}`}>
+        <Image src={'/villa.jpg'} alt={'Property'} width={350} height={250} />
+      </CardMedia> */}
+      <CardMedia component='img' height='250' image={img} alt='Paella dish' />
       <CardContent>
         <Grid container justifyContent={'space-between'} alignItems={'center'}>
           <Grid item xs>
@@ -49,7 +62,7 @@ const PropertyCard = ({ price, m2, bedroom, bathroom, id, src, location }) => {
               }}
             >
               <span>€ </span>
-              {price}
+              {numberWithCommas(price)}
             </Box>
           </Grid>
           <Grid container item xs={5} justifyContent={'flex-end'}>
@@ -67,7 +80,7 @@ const PropertyCard = ({ price, m2, bedroom, bathroom, id, src, location }) => {
               <IconButton
                 aria-label='add to favorites'
                 component={Link}
-                href={`/properties/${id}`}
+                href={`/properties/${_id}`}
               >
                 <ReadMoreIcon />
               </IconButton>
@@ -76,10 +89,12 @@ const PropertyCard = ({ price, m2, bedroom, bathroom, id, src, location }) => {
         </Grid>
 
         <Typography variant='body2' color='text.secondary'>
-          {location}
+          {`${capitalizeFirstLetter(type)} in ${capitalizeFirstLetter(
+            city
+          )}, ${capitalizeFirstLetter(province)}`}
         </Typography>
         <Grid container>
-          <Grid container mt={2} alignItems={'flex-end'} xs>
+          <Grid item container mt={2} alignItems={'flex-end'} xs>
             <Grid item mr={1}>
               <LivingAreaIcon sx={{ fontSize: 14 }} />
             </Grid>
@@ -88,11 +103,11 @@ const PropertyCard = ({ price, m2, bedroom, bathroom, id, src, location }) => {
                 Living area
               </Typography>
               <Typography variant='body2' color='#2B3F65'>
-                {m2} m2
+                {livingArea} m2
               </Typography>
             </Grid>
           </Grid>
-          <Grid container mt={2} alignItems={'flex-end'} xs>
+          <Grid item container mt={2} alignItems={'flex-end'} xs>
             <Grid item mr={1}>
               <BedroomIcon sx={{ fontSize: 18 }} />
             </Grid>
@@ -105,7 +120,7 @@ const PropertyCard = ({ price, m2, bedroom, bathroom, id, src, location }) => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid container mt={2} alignItems={'flex-end'} xs>
+          <Grid item container mt={2} alignItems={'flex-end'} xs>
             <Grid item mr={1}>
               <BathroomIcon sx={{ fontSize: 18 }} />
             </Grid>
