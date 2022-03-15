@@ -5,7 +5,8 @@ const connectionString = process.env.MONGO_URL
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { variant, price } = req.body
+    const { type, price, city, province, livingArea, bedroom, bathroom, img } =
+      req.body
 
     await mongoose.connect(
       connectionString,
@@ -17,8 +18,14 @@ export default async function handler(req, res) {
 
     try {
       var property = new Property({
-        variant,
+        type,
         price,
+        city,
+        province,
+        livingArea,
+        bedroom,
+        bathroom,
+        img,
       })
       var propertyCreated = await property.save()
       return res.status(200).send(propertyCreated)

@@ -1,7 +1,7 @@
 import React from 'react'
 import { SvgIcon } from '@mui/material'
 
-const LivingArea = (props) => {
+const LivingAreaIcon = (props) => {
   return (
     <SvgIcon
       {...props}
@@ -19,4 +19,4 @@ const LivingArea = (props) => {
   )
 }
 
-export default LivingArea
+export default LivingAreaIcon
