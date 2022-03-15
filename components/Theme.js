@@ -2,7 +2,9 @@ import { createTheme } from '@mui/material'
 
 export default createTheme({
   palette: {
-    type: 'light',
+    typography: {
+      fontFamily: ['Poppins', 'Open Sans'].join(','),
+    },
     primary: {
       main: '#1A626D',
     },

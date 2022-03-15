@@ -7,6 +7,10 @@ import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import ListItemButton from '@mui/material/ListItemButton'
 import Link from '../Link'
+import DiscoverIcon from '../svg/Nav/DiscoverIcon'
+import TelegramIcon from '@mui/icons-material/Telegram'
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
+import { ListItemIcon } from '@mui/material'
 
 const MobileNav = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
@@ -49,6 +53,9 @@ const MobileNav = () => {
               component={Link}
               href={'/properties'}
             >
+              <ListItemIcon sx={{ minWidth: '2rem' }}>
+                <DiscoverIcon />
+              </ListItemIcon>
               <ListItemText>Discover</ListItemText>
             </ListItemButton>
           </ListItem>
@@ -60,6 +67,9 @@ const MobileNav = () => {
               component={Link}
               href={'/favorites'}
             >
+              <ListItemIcon sx={{ minWidth: '2rem' }}>
+                <FavoriteBorderIcon sx={{ color: 'secondary.main' }} />
+              </ListItemIcon>
               <ListItemText>Favorites</ListItemText>
             </ListItemButton>
           </ListItem>
@@ -69,6 +79,9 @@ const MobileNav = () => {
               component={Link}
               href={'/contactus'}
             >
+              <ListItemIcon sx={{ minWidth: '2rem' }}>
+                <TelegramIcon sx={{ color: 'secondary.main' }} />
+              </ListItemIcon>
               <ListItemText>Contact</ListItemText>
             </ListItemButton>
           </ListItem>
