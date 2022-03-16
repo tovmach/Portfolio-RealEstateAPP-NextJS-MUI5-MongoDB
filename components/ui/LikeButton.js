@@ -39,7 +39,7 @@ const LikeButton = ({ id }) => {
 
   return (
     <IconButton aria-label='add to favorites' onClick={favoritesHandler}>
-      <FavoriteIcon sx={{ color: favorites && 'red' }} />
+      <FavoriteIcon sx={{ color: favorites && '#FF6584' }} />
     </IconButton>
   )
 }

@@ -13,6 +13,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import Logo from '../svg/Nav/Logo'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Badge from '@mui/material/Badge'
 
 const DesktopNav = () => {
   const [propertiesTab, setPropertiesTab] = useState(false)
@@ -85,12 +86,21 @@ const DesktopNav = () => {
                   fontSize: 18,
                   textTransform: 'none',
                   bgcolor: favoritesTab && '#D9E5EC',
+                  '& .MuiBadge-badge': {
+                    bgcolor: '#FF6584',
+                    color: 'white',
+                    top: 2,
+                    right: 85,
+                  },
                 }}
                 component={Link}
                 href={'/favorites'}
                 startIcon={<FavoriteBorderIcon />}
               >
-                Favorites
+                <Badge badgeContent={10} max={99} color='secondary'>
+                  {' '}
+                  Favorites{' '}
+                </Badge>
               </Button>
 
               <Button
