@@ -11,9 +11,23 @@ import DiscoverIcon from '../svg/Nav/DiscoverIcon'
 import TelegramIcon from '@mui/icons-material/Telegram'
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { ListItemIcon } from '@mui/material'
+import HomeIcon from '@mui/icons-material/Home'
+import { useEffect } from 'react'
 
 const MobileNav = () => {
   const [openDrawer, setOpenDrawer] = useState(false)
+
+  const [homeTab, setHomeTab] = useState(false)
+  const [propertiesTab, setPropertiesTab] = useState(false)
+  const [favoritesTab, setFavoritesTab] = useState(false)
+  const [contactusTab, setContactusTab] = useState(false)
+
+  useEffect(() => {
+    setHomeTab(window.location.pathname.split('/')[1] === '')
+    setPropertiesTab(window.location.pathname.split('/')[1] === 'properties')
+    setFavoritesTab(window.location.pathname.split('/')[1] === 'favorites')
+    setContactusTab(window.location.pathname.split('/')[1] === 'contactus')
+  })
 
   const iOS =
     typeof navigator !== 'undefined' &&
@@ -45,7 +59,21 @@ const MobileNav = () => {
             '& .MuiListItem-root': { borderBottom: '1px solid #9494942e' },
           }}
         >
-          <ListItem>
+          <ListItem sx={{ bgcolor: homeTab && '#D9E5EC' }}>
+            <ListItemButton
+              onClick={() => {
+                setOpenDrawer(false)
+              }}
+              component={Link}
+              href={'/'}
+            >
+              <ListItemIcon sx={{ minWidth: '2rem' }}>
+                <HomeIcon sx={{ color: 'secondary.main' }} />
+              </ListItemIcon>
+              <ListItemText>Home</ListItemText>
+            </ListItemButton>
+          </ListItem>
+          <ListItem sx={{ bgcolor: propertiesTab && '#D9E5EC' }}>
             <ListItemButton
               onClick={() => {
                 setOpenDrawer(false)
@@ -59,7 +87,7 @@ const MobileNav = () => {
               <ListItemText>Discover</ListItemText>
             </ListItemButton>
           </ListItem>
-          <ListItem>
+          <ListItem sx={{ bgcolor: favoritesTab && '#D9E5EC' }}>
             <ListItemButton
               onClick={() => {
                 setOpenDrawer(false)
@@ -73,7 +101,7 @@ const MobileNav = () => {
               <ListItemText>Favorites</ListItemText>
             </ListItemButton>
           </ListItem>
-          <ListItem>
+          <ListItem sx={{ bgcolor: contactusTab && '#D9E5EC' }}>
             <ListItemButton
               onClick={() => setOpenDrawer(false)}
               component={Link}
