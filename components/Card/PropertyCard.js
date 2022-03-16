@@ -24,6 +24,7 @@ import BedroomIcon from '../svg/Card/BedroomIcon'
 import BathroomIcon from '../svg/Card/BathroomIcon'
 import Link from '../Link'
 import Image from 'next/image'
+import LikeButton from '../ui/LikeButton'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -72,9 +73,7 @@ const PropertyCard = ({
               </IconButton>
             </Grid>
             <Grid item>
-              <IconButton aria-label='add to favorites'>
-                <FavoriteIcon />
-              </IconButton>
+              <LikeButton id={_id} />
             </Grid>
             <Grid item>
               <IconButton
