@@ -1,7 +1,11 @@
 import React from 'react'
-
+import ContactForm from '../../components/ContactForm'
 const ContactUsPage = () => {
-  return <div>ContactUsPage</div>
+  return (
+    <>
+      <ContactForm />
+    </>
+  )
 }
 
 export default ContactUsPage

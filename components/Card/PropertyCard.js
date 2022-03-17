@@ -69,7 +69,13 @@ const PropertyCard = ({
           </Grid>
           <Grid container item xs={5} justifyContent={'flex-end'}>
             <Grid item>
-              <ContactButton id={_id} />
+              <ContactButton
+                id={_id}
+                price={price}
+                type={type}
+                city={city}
+                province={province}
+              />
             </Grid>
             <Grid item>
               <LikeButton id={_id} />

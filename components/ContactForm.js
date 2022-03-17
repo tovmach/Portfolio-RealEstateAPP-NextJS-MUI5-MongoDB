@@ -1,43 +1,12 @@
-import * as React from 'react'
-import Button from '@mui/material/Button'
-import TextField from '@mui/material/TextField'
-import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
-import DialogTitle from '@mui/material/DialogTitle'
-import { useEffect } from 'react'
+import React from 'react'
+import Container from '@mui/material/Container'
+import { TextField } from '@mui/material'
+import { Button } from '@mui/material'
+import { CircularProgress, Grid } from '@mui/material'
 import { useState } from 'react'
-import Slide from '@mui/material/Slide'
-import useMediaQuery from '@mui/material/useMediaQuery'
-import { useTheme } from '@mui/material/styles'
-import { CircularProgress } from '@mui/material'
 import axios from 'axios'
 
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-const numberWithCommas = (num) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-}
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction='up' ref={ref} {...props} />
-})
-
-const ContactButtonDialog = ({
-  openDialog,
-  dialogCloseHandler,
-  id,
-  price,
-  type,
-  city,
-  province,
-}) => {
-  const theme = useTheme()
-  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
-
+const ContactForm = () => {
   const [name, setName] = useState('')
   const [nameHelper, setNameHelper] = useState('')
   const [email, setEmail] = useState('')
@@ -98,42 +67,16 @@ const ContactButtonDialog = ({
     }
   }
 
-  useEffect(() => {
-    setMessage(
-      `I'm interested in the ${capitalizeFirstLetter(
-        type
-      )} (ref: ${id}) located in ${capitalizeFirstLetter(
-        city
-      )}, ${capitalizeFirstLetter(
-        province
-      )} whit the price of ${numberWithCommas(price)}€`
-    )
-    const contactData = JSON.parse(localStorage.getItem('contactData'))
-
-    if (contactData === null) {
-      localStorage.setItem('contactData', JSON.stringify({}))
-    }
-    //aqui ocure el problema de que tarde que si el objeto todavia se esta crando el sigiente if intenta comprobar la longitud
-    if (Object.keys(contactData).length > 0) {
-      setName(contactData.name)
-      setPhone(contactData.phone)
-      setEmail(contactData.email)
-      console.log('runing')
-    }
-  }, [])
-
   const sendFormHandler = () => {
     setLoading(true)
     axios
       .post('/api/contact', { name, email, phone, message })
       .then((res) => {
+        setName('')
+        setPhone('')
+        setEmail('')
+        setMessage('')
         setLoading(false)
-
-        dialogCloseHandler()
-        localStorage.setItem(
-          'contactData',
-          JSON.stringify({ name, email, phone })
-        )
       })
       .catch((err) => {
         setLoading(false)
@@ -141,20 +84,11 @@ const ContactButtonDialog = ({
   }
 
   return (
-    <>
-      <Dialog
-        fullScreen={fullScreen}
-        TransitionComponent={Transition}
-        open={openDialog}
-        onClose={dialogCloseHandler}
-      >
-        <DialogTitle>Are you interested in this property?</DialogTitle>
-        <DialogContent sx={{ '& .MuiFormControl-root ': { mt: 2 } }}>
-          <DialogContentText>
-            Fill out the contact form and our team will contact you as soon as
-            possible.
-          </DialogContentText>
+    <Container maxWidth='lg'>
+      <Grid container spacing={1.5} direction={'column'}>
+        <Grid item>
           <TextField
+            required
             fullWidth
             autoComplete='off'
             id='name'
@@ -165,7 +99,10 @@ const ContactButtonDialog = ({
             helperText={nameHelper}
             value={name}
           />
+        </Grid>
+        <Grid item>
           <TextField
+            required
             fullWidth
             autoComplete='off'
             id='phone'
@@ -176,7 +113,10 @@ const ContactButtonDialog = ({
             error={phoneHelper.length !== 0}
             value={phone}
           />
+        </Grid>
+        <Grid item>
           <TextField
+            required
             fullWidth
             autoComplete='off'
             id='email'
@@ -188,7 +128,10 @@ const ContactButtonDialog = ({
             helperText={emailHelper}
             value={email}
           />
+        </Grid>
+        <Grid item>
           <TextField
+            required
             fullWidth
             autoComplete='off'
             id='message'
@@ -201,10 +144,10 @@ const ContactButtonDialog = ({
             helperText={messageHelper}
             value={message}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={dialogCloseHandler}>Cancel</Button>
+        </Grid>
+        <Grid item>
           <Button
+            variant='outlined'
             onClick={sendFormHandler}
             disabled={
               name.length === 0 ||
@@ -223,10 +166,10 @@ const ContactButtonDialog = ({
               'Submit'
             )}
           </Button>
-        </DialogActions>
-      </Dialog>
-    </>
+        </Grid>
+      </Grid>
+    </Container>
   )
 }
 
-export default ContactButtonDialog
+export default ContactForm
