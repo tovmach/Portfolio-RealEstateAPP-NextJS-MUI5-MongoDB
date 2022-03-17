@@ -11,6 +11,8 @@ import { useState } from 'react'
 import Slide from '@mui/material/Slide'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
+import { CircularProgress } from '@mui/material'
+import axios from 'axios'
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction='up' ref={ref} {...props} />
@@ -28,6 +30,8 @@ const ContactButtonDialog = ({ openDialog, dialogCloseHandler }) => {
   const [messageHelper, setMessageHelper] = useState('')
   const [phone, setPhone] = useState('')
   const [phoneHelper, setPhoneHelper] = useState('')
+
+  const [loading, setLoading] = useState(false)
 
   const onChangeHandler = (event) => {
     let valid
@@ -87,10 +91,20 @@ const ContactButtonDialog = ({ openDialog, dialogCloseHandler }) => {
   }, [])
 
   const sendFormHandler = () => {
-    // dialogCloseHandler()
-    // const contactData = JSON.parse(localStorage.getItem('contactData'))
-    // if(contactData.length === 0){
-    // }
+    setLoading(true)
+    axios
+      .post('/api/contact', { name, email, phone, message })
+      .then((res) => {
+        setLoading(false)
+        setName('')
+        setEmail('')
+        setMessage('')
+        setPhone('')
+        dialogCloseHandler()
+      })
+      .catch((err) => {
+        setLoading(false)
+      })
   }
 
   return (
@@ -166,7 +180,11 @@ const ContactButtonDialog = ({ openDialog, dialogCloseHandler }) => {
               phoneHelper.length !== 0
             }
           >
-            Send
+            {loading ? (
+              <CircularProgress size={30} sx={{ color: 'white' }} />
+            ) : (
+              'Submit'
+            )}
           </Button>
         </DialogActions>
       </Dialog>
