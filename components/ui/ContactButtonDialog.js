@@ -8,8 +8,18 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import Slide from '@mui/material/Slide'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { useTheme } from '@mui/material/styles'
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction='up' ref={ref} {...props} />
+})
 
 const ContactButtonDialog = ({ openDialog, dialogCloseHandler }) => {
+  const theme = useTheme()
+  const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
+
   const [name, setName] = useState('')
   const [nameHelper, setNameHelper] = useState('')
   const [email, setEmail] = useState('')
@@ -85,7 +95,12 @@ const ContactButtonDialog = ({ openDialog, dialogCloseHandler }) => {
 
   return (
     <>
-      <Dialog open={openDialog} onClose={dialogCloseHandler}>
+      <Dialog
+        fullScreen={fullScreen}
+        TransitionComponent={Transition}
+        open={openDialog}
+        onClose={dialogCloseHandler}
+      >
         <DialogTitle>Are you interested in this property?</DialogTitle>
         <DialogContent sx={{ '& .MuiFormControl-root ': { mt: 2 } }}>
           <DialogContentText>
