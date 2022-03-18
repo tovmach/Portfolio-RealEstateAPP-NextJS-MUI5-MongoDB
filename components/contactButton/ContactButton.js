@@ -4,10 +4,12 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import SendIcon from '@mui/icons-material/Send'
 import ContactButtonDialog from './ContactButtonDialog'
+import { useContactData } from './ContactButtonContext'
 
 const ContactButton = ({ id, price, type, city, province }) => {
-  const [openDialog, setOpenDialog] = React.useState(false)
+  const [openDialog, setOpenDialog] = useState(false)
   const [propertyContact, setPropertyContact] = useState(false)
+  const ctxContactData = useContactData()
 
   const dialogCloseHandler = () => {
     setOpenDialog(false)
@@ -18,6 +20,7 @@ const ContactButton = ({ id, price, type, city, province }) => {
   const propertyContactHandler = () => {
     setPropertyContact((prev) => !prev)
     setOpenDialog(true)
+    ctxContactData.getContactData()
   }
 
   return (

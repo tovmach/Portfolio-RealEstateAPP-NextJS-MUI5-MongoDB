@@ -16,7 +16,7 @@ export default function handler(req, res) {
       .get(
         `https://api.telegram.org/bot${process.env.TMBOT}/sendMessage?chat_id=${process.env.TMCHADID}&text=${urlEncodedMessage}&parse_mode=HTML`
       )
-      .then((response) => res.status(200).json({ info: 'susses' }))
+      .then((response) => res.status(200).json({ info: 'Success' }))
       .catch((err) => {
         res.status(500).json({ error: err.description })
       })

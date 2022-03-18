@@ -25,7 +25,7 @@ import BathroomIcon from '../svg/Card/BathroomIcon'
 import Link from '../Link'
 import Image from 'next/image'
 import LikeButton from '../ui/LikeButton'
-import ContactButton from '../ui/ContactButton'
+import ContactButton from '../contactButton/ContactButton'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
