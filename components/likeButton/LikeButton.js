@@ -3,43 +3,51 @@ import { IconButton } from '@mui/material'
 import FavoriteIcon from '@mui/icons-material/Favorite'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { useFavoritesPropertiesList } from './FavoritesPropertiesListContext'
 
 const LikeButton = ({ id }) => {
-  const [favorites, setFavorites] = useState(false)
+  const [favoriteButtonActiv, setFavoriteButtonActiv] = useState(false)
+
+  const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
 
   useEffect(() => {
-    const favoritesLocalData = JSON.parse(localStorage.getItem('favorites'))
-    if (favoritesLocalData === null) {
-      localStorage.setItem('favorites', JSON.stringify([]))
+    if (ctxFavoritesPropertiesList.favorites.includes(id)) {
+      setFavoriteButtonActiv(true)
     }
-    if (favoritesLocalData.includes(id)) {
-      setFavorites(true)
-    }
-  }, [])
+  }, [ctxFavoritesPropertiesList.favorites, id])
 
   const favoritesHandler = () => {
-    const favoritesLocalData = JSON.parse(localStorage.getItem('favorites'))
+    //const favoritesLocalData = JSON.parse(localStorage.getItem('favorites'))
 
-    setFavorites((prev) => {
+    setFavoriteButtonActiv((prev) => {
       if (prev === false) {
-        setFavorites(true)
-        localStorage.setItem(
-          'favorites',
-          JSON.stringify([id, ...favoritesLocalData])
-        )
+        setFavoriteButtonActiv(true)
+        ctxFavoritesPropertiesList.addPropertyToList(id)
       } else {
-        setFavorites(false)
-        const newFavoritesList = favoritesLocalData.filter(
-          (favoriteId) => favoriteId !== id
-        )
-        localStorage.setItem('favorites', JSON.stringify(newFavoritesList))
+        setFavoriteButtonActiv(false)
+        ctxFavoritesPropertiesList.removePropertyFromList(id)
       }
     })
+    // setFavoriteButtonActiv((prev) => {
+    //   if (prev === false) {
+    //     setFavoriteButtonActiv(true)
+    //     localStorage.setItem(
+    //       'favorites',
+    //       JSON.stringify([id, ...favoritesLocalData])
+    //     )
+    //   } else {
+    //     setFavoriteButtonActiv(false)
+    //     const newFavoritesList = favoritesLocalData.filter(
+    //       (favoriteId) => favoriteId !== id
+    //     )
+    //     localStorage.setItem('favorites', JSON.stringify(newFavoritesList))
+    //   }
+    // })
   }
 
   return (
     <IconButton aria-label='add to favorites' onClick={favoritesHandler}>
-      <FavoriteIcon sx={{ color: favorites && '#FF6584' }} />
+      <FavoriteIcon sx={{ color: favoriteButtonActiv && '#FF6584' }} />
     </IconButton>
   )
 }

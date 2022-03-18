@@ -6,8 +6,11 @@ import { CircularProgress, Grid } from '@mui/material'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNotification } from './notification/NotificationBarContext'
+import { useContactData } from './contactButton/ContactButtonContext'
+import { useEffect } from 'react'
 
 const ContactForm = () => {
+  const ctxContactData = useContactData()
   const ctxNotification = useNotification()
 
   const [name, setName] = useState('')
@@ -88,6 +91,17 @@ const ContactForm = () => {
         ctxNotification.showNotification(err.message, 'error')
       })
   }
+
+  // useEffect(() => {
+  //   const contactData = ctxContactData.getContactData()
+  //   console.log(contactData)
+
+  //   if (Object.keys(contactData).length > 0) {
+  //     setName(contactData.name)
+  //     setPhone(contactData.phone)
+  //     setEmail(contactData.email)
+  //   }
+  // }, [])
 
   return (
     <Container maxWidth='lg'>
