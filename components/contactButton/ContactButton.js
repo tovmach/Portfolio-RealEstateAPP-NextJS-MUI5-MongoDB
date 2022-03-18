@@ -19,7 +19,6 @@ const ContactButton = ({ id, price, type, city, province }) => {
   }
 
   useEffect(() => {
-    // console.log(ctxContactedPropertiesList.contactPropertiesList)
     if (ctxContactedPropertiesList.contactPropertiesList.includes(id)) {
       setContactButtonActiv(true)
     } else {

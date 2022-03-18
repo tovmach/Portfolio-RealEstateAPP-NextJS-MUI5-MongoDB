@@ -4,9 +4,8 @@ import { useContext } from 'react'
 
 const ContactedPropertiesList = createContext({
   contactPropertiesList: [],
-  getPropertyList: function (id) {},
   addPropertyToList: function (id) {},
-  removePropertyFromList: function (id) {},
+  //   removePropertyFromList: function (id) {},
 })
 
 export const useContactedPropertiesList = () => {
@@ -40,26 +39,27 @@ const ContactPropertyListContext = ({ children }) => {
     )
     setContactPropertiesList([id, ...contactPropertiesListLocalStorage])
   }
-  const removePropertyFromList = (id) => {
-    const contactPropertiesListLocalStorage = JSON.parse(
-      localStorage.getItem('contactPropertiesList')
-    )
 
-    const newContactPropertiesList = contactPropertiesListLocalStorage.filter(
-      (propertyId) => propertyId !== id
-    )
+  //   const removePropertyFromList = (id) => {
+  //     const contactPropertiesListLocalStorage = JSON.parse(
+  //       localStorage.getItem('contactPropertiesList')
+  //     )
 
-    localStorage.setItem(
-      'contactPropertiesList',
-      JSON.stringify(newContactPropertiesList)
-    )
-    setContactPropertiesList(newContactPropertiesList)
-  }
+  //     const newContactPropertiesList = contactPropertiesListLocalStorage.filter(
+  //       (propertyId) => propertyId !== id
+  //     )
+
+  //     localStorage.setItem(
+  //       'contactPropertiesList',
+  //       JSON.stringify(newContactPropertiesList)
+  //     )
+  //     setContactPropertiesList(newContactPropertiesList)
+  //   }
 
   const context = {
     contactPropertiesList,
     addPropertyToList,
-    removePropertyFromList,
+    // removePropertyFromList,
   }
 
   return (
