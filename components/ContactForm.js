@@ -5,8 +5,11 @@ import { Button } from '@mui/material'
 import { CircularProgress, Grid } from '@mui/material'
 import { useState } from 'react'
 import axios from 'axios'
+import { useNotification } from './notification/NotificationBarContext'
 
 const ContactForm = () => {
+  const ctxNotification = useNotification()
+
   const [name, setName] = useState('')
   const [nameHelper, setNameHelper] = useState('')
   const [email, setEmail] = useState('')
@@ -68,6 +71,7 @@ const ContactForm = () => {
   }
 
   const sendFormHandler = () => {
+    ctxNotification.showNotification('Sending Email', 'info')
     setLoading(true)
     axios
       .post('/api/contact', { name, email, phone, message })
@@ -77,9 +81,11 @@ const ContactForm = () => {
         setEmail('')
         setMessage('')
         setLoading(false)
+        ctxNotification.showNotification('Thanks for reaching out!', 'success')
       })
       .catch((err) => {
         setLoading(false)
+        ctxNotification.showNotification(err.message, 'error')
       })
   }
 

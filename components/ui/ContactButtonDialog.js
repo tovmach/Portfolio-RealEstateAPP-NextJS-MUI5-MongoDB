@@ -13,6 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 import { useTheme } from '@mui/material/styles'
 import { CircularProgress } from '@mui/material'
 import axios from 'axios'
+import { useNotification } from '../notification/NotificationBarContext'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -35,6 +36,8 @@ const ContactButtonDialog = ({
   city,
   province,
 }) => {
+  const ctxNotification = useNotification()
+
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
 
@@ -123,6 +126,7 @@ const ContactButtonDialog = ({
   }, [])
 
   const sendFormHandler = () => {
+    ctxNotification.showNotification('Sending Email', 'info')
     setLoading(true)
     axios
       .post('/api/contact', { name, email, phone, message })
@@ -134,9 +138,11 @@ const ContactButtonDialog = ({
           'contactData',
           JSON.stringify({ name, email, phone })
         )
+        ctxNotification.showNotification('Thanks for reaching out!', 'success')
       })
       .catch((err) => {
         setLoading(false)
+        ctxNotification.showNotification(err.message, 'error')
       })
   }
 

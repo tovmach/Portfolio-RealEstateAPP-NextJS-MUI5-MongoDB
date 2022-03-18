@@ -4,22 +4,25 @@ import { CssBaseline } from '@mui/material'
 import { Box } from '@mui/system'
 import Footer from './Footer'
 import DesktopNav from './Navigation/DesktopNav'
+import NotificationBarContextProvider from './notification/NotificationBarContext'
 
 const Layout = ({ children }) => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          minHeight: '100vh',
-        }}
-      >
-        <DesktopNav />
-        {children}
-        <Footer />
-      </Box>
+      <NotificationBarContextProvider>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh',
+          }}
+        >
+          <DesktopNav />
+          {children}
+          <Footer />
+        </Box>
+      </NotificationBarContextProvider>
     </ThemeProvider>
   )
 }
