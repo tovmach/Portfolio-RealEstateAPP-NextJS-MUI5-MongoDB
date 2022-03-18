@@ -1,4 +1,4 @@
-import { createContext } from 'react'
+import { createContext, useEffect } from 'react'
 import { useState } from 'react'
 import { useContext } from 'react'
 
@@ -16,7 +16,7 @@ export const useContactedPropertiesList = () => {
 const ContactPropertyListContext = ({ children }) => {
   const [contactPropertiesList, setContactPropertiesList] = useState([])
 
-  const getPropertyList = (id) => {
+  useEffect(() => {
     const contactPropertiesListLocalStorage = JSON.parse(
       localStorage.getItem('contactPropertiesList')
     )
@@ -26,14 +26,9 @@ const ContactPropertyListContext = ({ children }) => {
     } else {
       if (contactPropertiesListLocalStorage.length > 0) {
         setContactPropertiesList(contactPropertiesListLocalStorage)
-        if (contactPropertiesListLocalStorage.includes(id)) {
-          return true
-        } else {
-          return false
-        }
       }
     }
-  }
+  }, [])
 
   const addPropertyToList = (id) => {
     const contactPropertiesListLocalStorage = JSON.parse(
@@ -63,7 +58,6 @@ const ContactPropertyListContext = ({ children }) => {
 
   const context = {
     contactPropertiesList,
-    getPropertyList,
     addPropertyToList,
     removePropertyFromList,
   }

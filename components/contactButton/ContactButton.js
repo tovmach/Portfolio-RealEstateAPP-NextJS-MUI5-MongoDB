@@ -19,14 +19,15 @@ const ContactButton = ({ id, price, type, city, province }) => {
   }
 
   useEffect(() => {
-    const isPropertyInTheList = ctxContactedPropertiesList.getPropertyList(id)
-    if (isPropertyInTheList) {
+    // console.log(ctxContactedPropertiesList.contactPropertiesList)
+    if (ctxContactedPropertiesList.contactPropertiesList.includes(id)) {
       setContactButtonActiv(true)
+    } else {
+      setContactButtonActiv(false)
     }
-  }, [])
+  }, [ctxContactedPropertiesList.contactPropertiesList, id])
 
   const propertyContactHandler = () => {
-    setContactButtonActiv((prev) => !prev)
     setOpenDialog(true)
     ctxContactData.getContactData()
   }
