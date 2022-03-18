@@ -15,6 +15,7 @@ import { CircularProgress } from '@mui/material'
 import axios from 'axios'
 import { useNotification } from '../notification/NotificationBarContext'
 import { useContactData } from './ContactButtonContext'
+import { useContactedPropertiesList } from './ContactPropertyListContext'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -39,6 +40,7 @@ const ContactButtonDialog = ({
 }) => {
   const ctxContactData = useContactData()
   const ctxNotification = useNotification()
+  const ctxContactedPropertiesList = useContactedPropertiesList()
 
   const theme = useTheme()
   const fullScreen = useMediaQuery(theme.breakpoints.down('sm'))
@@ -133,6 +135,7 @@ const ContactButtonDialog = ({
         dialogCloseHandler()
         ctxContactData.addContactData(name, email, phone)
         ctxNotification.showNotification('Thanks for reaching out!', 'success')
+        ctxContactedPropertiesList.addPropertyToList(id)
       })
       .catch((err) => {
         setLoading(false)

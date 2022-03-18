@@ -5,20 +5,28 @@ import { useEffect } from 'react'
 import SendIcon from '@mui/icons-material/Send'
 import ContactButtonDialog from './ContactButtonDialog'
 import { useContactData } from './ContactButtonContext'
+import { useContactedPropertiesList } from './ContactPropertyListContext'
 
 const ContactButton = ({ id, price, type, city, province }) => {
   const [openDialog, setOpenDialog] = useState(false)
-  const [propertyContact, setPropertyContact] = useState(false)
+  const [contactButtonActiv, setContactButtonActiv] = useState(false)
+
   const ctxContactData = useContactData()
+  const ctxContactedPropertiesList = useContactedPropertiesList()
 
   const dialogCloseHandler = () => {
     setOpenDialog(false)
   }
 
-  useEffect(() => {}, [])
+  useEffect(() => {
+    const isPropertyInTheList = ctxContactedPropertiesList.getPropertyList(id)
+    if (isPropertyInTheList) {
+      setContactButtonActiv(true)
+    }
+  }, [])
 
   const propertyContactHandler = () => {
-    setPropertyContact((prev) => !prev)
+    setContactButtonActiv((prev) => !prev)
     setOpenDialog(true)
     ctxContactData.getContactData()
   }
@@ -26,7 +34,7 @@ const ContactButton = ({ id, price, type, city, province }) => {
   return (
     <>
       <IconButton aria-label='Send message' onClick={propertyContactHandler}>
-        <SendIcon sx={{ color: propertyContact && 'blue' }} />
+        <SendIcon sx={{ color: contactButtonActiv && 'blue' }} />
       </IconButton>{' '}
       <ContactButtonDialog
         openDialog={openDialog}
