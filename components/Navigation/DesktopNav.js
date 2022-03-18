@@ -14,8 +14,11 @@ import Logo from '../svg/Nav/Logo'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Badge from '@mui/material/Badge'
+import { useFavoritesPropertiesList } from '../likeButton/FavoritesPropertiesListContext'
 
 const DesktopNav = () => {
+  const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
+
   const [propertiesTab, setPropertiesTab] = useState(false)
   const [favoritesTab, setFavoritesTab] = useState(false)
   const [contactusTab, setContactusTab] = useState(false)
@@ -97,9 +100,11 @@ const DesktopNav = () => {
                 href={'/favorites'}
                 startIcon={<FavoriteBorderIcon />}
               >
-                <Badge badgeContent={10} max={99} color='secondary'>
-                  {' '}
-                  Favorites{' '}
+                <Badge
+                  badgeContent={ctxFavoritesPropertiesList.favorites.length}
+                  max={99}
+                >
+                  Favorites
                 </Badge>
               </Button>
 

@@ -13,8 +13,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder'
 import { ListItemIcon } from '@mui/material'
 import HomeIcon from '@mui/icons-material/Home'
 import { useEffect } from 'react'
+import { Badge } from '@mui/material'
+import { useFavoritesPropertiesList } from '../likeButton/FavoritesPropertiesListContext'
 
 const MobileNav = () => {
+  const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
+
   const [openDrawer, setOpenDrawer] = useState(false)
 
   const [homeTab, setHomeTab] = useState(false)
@@ -98,7 +102,23 @@ const MobileNav = () => {
               <ListItemIcon sx={{ minWidth: '2rem' }}>
                 <FavoriteBorderIcon sx={{ color: 'secondary.main' }} />
               </ListItemIcon>
-              <ListItemText>Favorites</ListItemText>
+              <ListItemText
+                sx={{
+                  '& .MuiBadge-badge': {
+                    bgcolor: '#FF6584',
+                    color: 'white',
+                    top: 2,
+                    right: 78,
+                  },
+                }}
+              >
+                <Badge
+                  badgeContent={ctxFavoritesPropertiesList.favorites.length}
+                  max={99}
+                >
+                  Favorites
+                </Badge>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ bgcolor: contactusTab && '#D9E5EC' }}>
