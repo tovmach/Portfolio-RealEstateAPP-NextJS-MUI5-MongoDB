@@ -22,15 +22,11 @@ const ContactButton = ({ id, price, type, city, province }) => {
     }
   }, [ctxContactedPropertiesList.contactPropertiesList, id])
 
-  const propertyContactHandler = () => {
-    setOpenDialog(true)
-  }
-
   return (
     <>
-      <IconButton aria-label='Send message' onClick={propertyContactHandler}>
+      <IconButton aria-label='Send message' onClick={() => setOpenDialog(true)}>
         <SendIcon sx={{ color: contactButtonActiv && '#7AA7FC' }} />
-      </IconButton>{' '}
+      </IconButton>
       <ContactButtonDialog
         openDialog={openDialog}
         dialogCloseHandler={dialogCloseHandler}
@@ -39,6 +35,8 @@ const ContactButton = ({ id, price, type, city, province }) => {
         type={type}
         city={city}
         province={province}
+        contactButtonActiv={contactButtonActiv}
+        setContactButtonActiv={setContactButtonActiv}
       />
     </>
   )
