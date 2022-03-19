@@ -16,7 +16,7 @@ const PropertyCardList = ({ data }) => {
         {data.map((property) => (
           <Box
             key={property._id}
-            sx={{ display: 'inline-block', mx: { sm: '10px' } }}
+            sx={{ display: 'inline-block', m: { sm: '10px' } }}
           >
             <PropertyCard
               type={property.type}

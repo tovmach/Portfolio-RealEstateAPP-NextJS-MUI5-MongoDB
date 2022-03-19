@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import Property from '../../models/propertyModel'
 
-const connectionString = process.env.MONGO_URL
+const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.s3o9t.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {

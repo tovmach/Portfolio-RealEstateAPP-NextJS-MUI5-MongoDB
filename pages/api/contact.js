@@ -27,7 +27,7 @@ export default async function handler(req, res) {
     const sheets = google.sheets({ version: 'v4', auth: jwt })
 
     await sheets.spreadsheets.values.append({
-      spreadsheetId: process.env.SPREADSHEET_ID,
+      spreadsheetId: process.env.GOOGLE_SPREADSHEET_ID,
       range: 'Data', // sheet name
       valueInputOption: 'USER_ENTERED',
       resource: {
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
     const urlEncodedMessage = encodeURIComponent(tmMessage)
     axios
       .get(
-        `https://api.telegram.org/bot${process.env.TMBOT}/sendMessage?chat_id=${process.env.TMCHADID}&text=${urlEncodedMessage}&parse_mode=HTML`
+        `https://api.telegram.org/bot${process.env.TELEGRAM_BOT}/sendMessage?chat_id=${process.env.TELEGRAM_CHADID}&text=${urlEncodedMessage}&parse_mode=HTML`
       )
       .then((response) => res.status(200).json({ info: 'Success' }))
       .catch((err) => {

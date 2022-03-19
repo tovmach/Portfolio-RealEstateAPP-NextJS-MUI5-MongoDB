@@ -138,7 +138,7 @@ const MobileNav = () => {
                     bgcolor: '#7AA7FC',
                     color: 'white',
                     top: -2,
-                    right: 62,
+                    right: 64,
                   },
                 }}
               >
