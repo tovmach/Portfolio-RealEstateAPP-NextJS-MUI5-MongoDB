@@ -21,7 +21,11 @@ const FavoritesPage = () => {
 
     const listOfIds = ctxFavoritesPropertyListContext.favorites
 
-    if (listOfIdsLocalStorage.length === 0) {
+    if (listOfIdsLocalStorage !== null) {
+      if (listOfIdsLocalStorage.length === 0) {
+        setLoading(false)
+      }
+    } else {
       setLoading(false)
     }
 

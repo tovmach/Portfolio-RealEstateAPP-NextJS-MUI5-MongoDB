@@ -16,10 +16,21 @@ const ContactUsPage = () => {
   const [contactedPropertiesData, setContactedPropertiesData] = useState([])
 
   const [loading, setLoading] = useState(true)
-  const [noContentFound, setNoContentFound] = useState(false)
 
   useEffect(() => {
+    const listOfIdsLocalStorage = JSON.parse(
+      localStorage.getItem('contactPropertiesList')
+    )
+
     const listOfIds = ctxContactedPropertiesList.contactPropertiesList
+
+    if (listOfIdsLocalStorage !== null) {
+      if (listOfIdsLocalStorage.length === 0) {
+        setLoading(false)
+      }
+    } else {
+      setLoading(false)
+    }
 
     if (listOfIds.length > 0) {
       axios
@@ -31,11 +42,9 @@ const ContactUsPage = () => {
           setLoading(false)
         })
     } else {
-      setNoContentFound(true)
+      setContactedPropertiesData([])
     }
   }, [ctxContactedPropertiesList.contactPropertiesList])
-
-  console.log(contactedPropertiesData.length)
 
   return (
     <>
@@ -48,12 +57,16 @@ const ContactUsPage = () => {
           Properties you contacted us about
         </Typography>
       </Container>
-      {/* {loading && <CircularProgress color='secondary' sx={{ mx: 'auto' }} />} */}
-      {noContentFound && (
-        <Box sx={{ mx: 'auto', mt: 2 }}>No properties yet</Box>
-      )}
 
-      <PropertyCardList data={contactedPropertiesData} />
+      {loading ? (
+        <CircularProgress color='secondary' sx={{ mx: 'auto' }} />
+      ) : contactedPropertiesData.length === 0 ? (
+        <Box sx={{ mx: 'auto', mt: 2 }}>
+          You didn&rsquo;t show interest in any property yet
+        </Box>
+      ) : (
+        <PropertyCardList data={contactedPropertiesData} />
+      )}
     </>
   )
 }
