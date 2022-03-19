@@ -159,7 +159,7 @@ const ContactButtonDialog = ({
       >
         {contactButtonActiv ? (
           <>
-            <DialogTitle>We have you email!</DialogTitle>
+            <DialogTitle>We have your email!</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 We have successfully received your contact information. Do you

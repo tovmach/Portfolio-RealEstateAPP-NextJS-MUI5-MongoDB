@@ -1,6 +1,16 @@
 import { createTheme } from '@mui/material'
 
 export default createTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 600,
+      xmd: 780,
+      md: 900,
+      lg: 1200,
+      xl: 1536,
+    },
+  },
   palette: {
     typography: {
       fontFamily: ['Poppins', 'Open Sans'].join(','),
