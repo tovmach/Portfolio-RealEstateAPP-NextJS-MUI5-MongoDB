@@ -15,9 +15,11 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Badge from '@mui/material/Badge'
 import { useFavoritesPropertiesList } from '../likeButton/FavoritesPropertiesListContext'
+import { useContactedPropertiesList } from '../contactButton/ContactPropertyListContext'
 
 const DesktopNav = () => {
   const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
+  const ctxContactedPropertiesList = useContactedPropertiesList()
 
   const [propertiesTab, setPropertiesTab] = useState(false)
   const [favoritesTab, setFavoritesTab] = useState(false)
@@ -114,12 +116,25 @@ const DesktopNav = () => {
                   fontSize: 18,
                   textTransform: 'none',
                   bgcolor: contactusTab && '#D9E5EC',
+                  '& .MuiBadge-badge': {
+                    bgcolor: '#7AA7FC',
+                    color: 'white',
+                    top: 2,
+                    right: 70,
+                  },
                 }}
                 component={Link}
                 href={'/contactus'}
                 startIcon={<TelegramIcon />}
               >
-                Contact
+                <Badge
+                  badgeContent={
+                    ctxContactedPropertiesList.contactPropertiesList.length
+                  }
+                  max={99}
+                >
+                  Contact
+                </Badge>
               </Button>
             </Box>
 

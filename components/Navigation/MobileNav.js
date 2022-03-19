@@ -15,9 +15,11 @@ import HomeIcon from '@mui/icons-material/Home'
 import { useEffect } from 'react'
 import { Badge } from '@mui/material'
 import { useFavoritesPropertiesList } from '../likeButton/FavoritesPropertiesListContext'
+import { useContactedPropertiesList } from '../contactButton/ContactPropertyListContext'
 
 const MobileNav = () => {
   const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
+  const ctxContactedPropertiesList = useContactedPropertiesList()
 
   const [openDrawer, setOpenDrawer] = useState(false)
 
@@ -107,8 +109,8 @@ const MobileNav = () => {
                   '& .MuiBadge-badge': {
                     bgcolor: '#FF6584',
                     color: 'white',
-                    top: 2,
-                    right: 78,
+                    top: -2,
+                    right: 75,
                   },
                 }}
               >
@@ -130,7 +132,25 @@ const MobileNav = () => {
               <ListItemIcon sx={{ minWidth: '2rem' }}>
                 <TelegramIcon sx={{ color: 'secondary.main' }} />
               </ListItemIcon>
-              <ListItemText>Contact</ListItemText>
+              <ListItemText
+                sx={{
+                  '& .MuiBadge-badge': {
+                    bgcolor: '#7AA7FC',
+                    color: 'white',
+                    top: -2,
+                    right: 62,
+                  },
+                }}
+              >
+                <Badge
+                  badgeContent={
+                    ctxContactedPropertiesList.contactPropertiesList.length
+                  }
+                  max={99}
+                >
+                  Contact
+                </Badge>
+              </ListItemText>
             </ListItemButton>
           </ListItem>
         </List>
