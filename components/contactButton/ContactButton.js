@@ -21,20 +21,21 @@ const ContactButton = ({ id, price, type, city, province }) => {
   useEffect(() => {
     if (ctxContactedPropertiesList.contactPropertiesList.includes(id)) {
       setContactButtonActiv(true)
-    } else {
-      setContactButtonActiv(false)
     }
+    // } else {
+    //   setContactButtonActiv(false)
+    // }
   }, [ctxContactedPropertiesList.contactPropertiesList, id])
 
   const propertyContactHandler = () => {
     setOpenDialog(true)
-    ctxContactData.getContactData()
+    // ctxContactData.getContactData()
   }
 
   return (
     <>
       <IconButton aria-label='Send message' onClick={propertyContactHandler}>
-        <SendIcon sx={{ color: contactButtonActiv && 'blue' }} />
+        <SendIcon sx={{ color: contactButtonActiv && '#7AA7FC' }} />
       </IconButton>{' '}
       <ContactButtonDialog
         openDialog={openDialog}

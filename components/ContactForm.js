@@ -85,6 +85,7 @@ const ContactForm = () => {
         setMessage('')
         setLoading(false)
         ctxNotification.showNotification('Thanks for reaching out!', 'success')
+        ctxContactData.addContactData(name, email, phone)
       })
       .catch((err) => {
         setLoading(false)
@@ -92,16 +93,15 @@ const ContactForm = () => {
       })
   }
 
-  // useEffect(() => {
-  //   const contactData = ctxContactData.getContactData()
-  //   console.log(contactData)
+  useEffect(() => {
+    const contactData = ctxContactData.contactData
 
-  //   if (Object.keys(contactData).length > 0) {
-  //     setName(contactData.name)
-  //     setPhone(contactData.phone)
-  //     setEmail(contactData.email)
-  //   }
-  // }, [])
+    if (Object.keys(contactData).length > 0) {
+      setName(contactData.name)
+      setPhone(contactData.phone)
+      setEmail(contactData.email)
+    }
+  }, [ctxContactData.contactData])
 
   return (
     <Container maxWidth='lg'>
