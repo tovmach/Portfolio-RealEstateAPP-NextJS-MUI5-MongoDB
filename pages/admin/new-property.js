@@ -5,8 +5,10 @@ import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import { TextField, Button } from '@mui/material'
+import SelectMenu from '../../components/ui/SelectMenu'
 
 const NewProperty = () => {
+  const [operation, setOperation] = useState('')
   const [type, setType] = useState('')
   const [price, setPrice] = useState('')
   const [city, setCity] = useState('')
@@ -14,6 +16,11 @@ const NewProperty = () => {
   const [livingArea, setLivingArea] = useState('')
   const [bedroom, setBedroom] = useState('')
   const [bathroom, setBathroom] = useState('')
+
+  const operationList = [
+    { text: 'Sell', value: 'buy' },
+    { text: 'Rent', value: 'rent' },
+  ]
 
   const onSubmitHandler = () => {
     axios.post('/api/add-property', {
@@ -41,6 +48,14 @@ const NewProperty = () => {
           direction={'column'}
           alignItems={'center'}
         >
+          <Grid item>
+            <SelectMenu
+              label='Operation'
+              dataToSelect={operationList}
+              handleChange={(event) => setOperation(event.target.value)}
+              value={operation}
+            />
+          </Grid>
           <Grid item>
             <TextField
               label='Type'
