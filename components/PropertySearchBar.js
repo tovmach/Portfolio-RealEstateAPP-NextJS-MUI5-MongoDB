@@ -126,11 +126,19 @@ const PropertySearchBar = () => {
             variant='contained'
             color='primary'
             component={Link}
-            href={`/properties${operation && '/' + operation}${
-              type && '/' + type
-            }${location && '/' + location}${min && '/' + min}${
-              max && '/' + max
-            }`}
+            href={
+              `/properties/search?${
+                operation && 'operation=' + operation + '&'
+              }${type && 'type=' + type + '&'}${
+                location && 'location=' + location + '&'
+              }${min && 'min=' + min + '&'}${max && 'max=' + max}`
+
+              //   `/properties${operation && '/' + operation}${
+              //   type && '/' + type
+              // }${location && '/' + location}${min && '/' + min}${
+              //   max && '/' + max
+              // }`
+            }
             disabled={operation && min && max ? false : true}
           >
             Search Now
