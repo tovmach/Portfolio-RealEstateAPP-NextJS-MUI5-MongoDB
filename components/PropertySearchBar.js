@@ -28,6 +28,10 @@ const PropertySearchBar = () => {
   const typeList = [
     { text: 'Villa', value: 'villa' },
     { text: 'Apartment', value: 'apartment' },
+    { text: 'Townhouse', value: 'townhouse' },
+    { text: 'Commercial', value: 'commercial' },
+    { text: 'Penthouse', value: 'penthouse' },
+    { text: 'Plot', value: 'plot' },
   ]
 
   const buyPriceList = [
@@ -41,6 +45,15 @@ const PropertySearchBar = () => {
     { text: '500.000€', value: 500000 },
     { text: '750.000€', value: 750000 },
     { text: '1.000.000€', value: 1000000 },
+    { text: '1.500.000€', value: 1500000 },
+    { text: '2.000.000€', value: 2000000 },
+    { text: '2.500.000€', value: 2500000 },
+    { text: '3.000.000€', value: 3000000 },
+    { text: '3.500.000€', value: 3500000 },
+    { text: '4.000.000€', value: 4000000 },
+    { text: '4.500.000€', value: 4500000 },
+    { text: '5.000.000€', value: 5000000 },
+    { text: 'Any Price', value: 500000000 },
   ]
   const rentPriceList = [
     { text: '250€', value: 250 },
@@ -53,6 +66,7 @@ const PropertySearchBar = () => {
     { text: '5.000€', value: 5000 },
     { text: '7.500€', value: 7500 },
     { text: '10.000€', value: 10000 },
+    { text: 'Any Price', value: 500000000 },
   ]
 
   return (
@@ -98,7 +112,7 @@ const PropertySearchBar = () => {
         <Grid item>
           <SelectMenu
             label='From'
-            dataToSelect={minList}
+            dataToSelect={minList.slice(0, -1)}
             required={true}
             handleChange={(event) => {
               setMin(event.target.value)
