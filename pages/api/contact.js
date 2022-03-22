@@ -12,7 +12,7 @@ export default async function handler(req, res) {
     let mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d)
     let da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
 
-    let time = d.getHours() + ':' + d.getMinutes()
+    let time = d.getUTCHours() + 1 + ':' + d.getUTCMinutes()
 
     const todayDate = `${da}-${mo}-${ye} ${time}`
 
