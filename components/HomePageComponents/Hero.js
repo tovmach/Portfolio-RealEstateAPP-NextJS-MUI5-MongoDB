@@ -13,6 +13,7 @@ const Hero = () => {
           spacing={2}
           alignItems={'center'}
           justifyContent={'center'}
+          mb={4}
         >
           <Grid item container spacing={0} direction={'column'} xs={8}>
             <Grid item>
@@ -30,7 +31,7 @@ const Hero = () => {
                   },
                 }}
               >
-                Find Your Next <span>Perfect Place</span>
+                Find Your Next <br /> <span>Perfect Place</span>
                 To Live
               </Box>
             </Grid>
