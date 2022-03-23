@@ -39,9 +39,6 @@ const DesktopNav = () => {
       >
         <Container maxWidth='lg'>
           <Toolbar disableGutters>
-            {/* <Button startIcon={<Logo sx={{ fontSize: 60 }} />}>
-              RealEstate
-            </Button> */}
             <Box
               component={Link}
               href={'/'}

@@ -76,7 +76,7 @@ const MobileNav = () => {
               <ListItemIcon sx={{ minWidth: '2rem' }}>
                 <HomeIcon sx={{ color: 'secondary.main' }} />
               </ListItemIcon>
-              <ListItemText>Home</ListItemText>
+              <ListItemText sx={{ color: 'primary.main' }}>Home</ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ bgcolor: propertiesTab && '#D9E5EC' }}>
@@ -90,7 +90,9 @@ const MobileNav = () => {
               <ListItemIcon sx={{ minWidth: '2rem' }}>
                 <DiscoverIcon />
               </ListItemIcon>
-              <ListItemText>Discover</ListItemText>
+              <ListItemText sx={{ color: 'primary.main' }}>
+                Discover
+              </ListItemText>
             </ListItemButton>
           </ListItem>
           <ListItem sx={{ bgcolor: favoritesTab && '#D9E5EC' }}>
@@ -112,6 +114,7 @@ const MobileNav = () => {
                     top: -2,
                     right: 75,
                   },
+                  color: 'primary.main',
                 }}
               >
                 <Badge
@@ -140,6 +143,7 @@ const MobileNav = () => {
                     top: -2,
                     right: 64,
                   },
+                  color: 'primary.main',
                 }}
               >
                 <Badge
