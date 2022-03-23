@@ -73,7 +73,11 @@ const PropertySearchBar = () => {
     <Container maxWidth='lg'>
       <Grid
         container
-        sx={{ bgcolor: 'secondary.main', p: 5, borderRadius: 2 }}
+        sx={{
+          bgcolor: 'secondary.main',
+          p: 5,
+          borderRadius: 2,
+        }}
         justifyContent={'center'}
         alignItems={'center'}
       >
@@ -92,7 +96,7 @@ const PropertySearchBar = () => {
             value={operation}
             required={true}
           />
-        </Grid>{' '}
+        </Grid>
         <Grid item>
           <SelectMenu
             label='Type'

@@ -1,11 +1,8 @@
 import React from 'react'
-import TextField from '@mui/material/TextField'
-import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import Button from '@mui/material/Button'
 import { Box, Container } from '@mui/material'
 import Image from 'next/image'
-import HeroSvg from '../svg/Hero/HeroSvg'
 
 const Hero = () => {
   return (
