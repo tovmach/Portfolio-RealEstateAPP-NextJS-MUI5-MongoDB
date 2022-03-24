@@ -22,6 +22,7 @@ export default function SelectMenu({
           color: 'white',
           '&.Mui-focused.MuiFormLabel-root': { color: 'white' },
           '&.Mui-disabled': { color: 'rgb(255 255 255 / 38%)' },
+          ...sx,
         }}
       >
         {label}

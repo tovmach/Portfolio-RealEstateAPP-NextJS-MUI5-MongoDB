@@ -178,7 +178,7 @@ const PropertySearchBar = () => {
                 color: 'rgb(255 255 255 / 30%)',
                 border: '1px solid rgb(255 255 255 / 30%)',
               },
-              fontSize: 15,
+              fontSize: 14,
             }}
             disabled={operation && min && max ? false : true}
           >
