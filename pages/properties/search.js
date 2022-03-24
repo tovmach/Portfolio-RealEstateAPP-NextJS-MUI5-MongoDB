@@ -3,12 +3,37 @@ import mongoose from 'mongoose'
 import Property from '../../models/propertyModel'
 import Container from '@mui/material/Container'
 import PropertyCardList from '../../components/Card/PropertyCardList'
+import PropertySearchBar from '../../components/PropertySearchBar'
+import Image from 'next/image'
+import { Box } from '@mui/system'
+import Grid from '@mui/material/Grid'
 
 const SearchPropertiesPage = ({ data }) => {
   return (
     <>
       <Container maxWidth='lg'>
+        <PropertySearchBar />
         <PropertyCardList data={data} />
+        {data.length === 0 && (
+          <Grid
+            container
+            justifyContent={'center'}
+            sx={{ mt: { xs: 3, md: 5 } }}
+          >
+            <Grid item>
+              <Image
+                src={'/webMedia/feeling_blue.svg'}
+                width={500}
+                height={320}
+                objectFit='contain' // or objectFit="cover"
+                alt={'No properties found'}
+              />
+              <Box sx={{ textAlign: 'center', color: '#58585D' }}>
+                No properties found with your search criteria.
+              </Box>
+            </Grid>
+          </Grid>
+        )}
       </Container>
     </>
   )
