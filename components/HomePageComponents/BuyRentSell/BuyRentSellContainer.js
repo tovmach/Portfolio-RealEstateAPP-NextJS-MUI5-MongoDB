@@ -7,7 +7,7 @@ const BuyRentSellContainer = () => {
     <Box sx={{ bgcolor: 'secondary.main', my: 2, py: 5 }}>
       <Container maxWidth='lg'>
         <Grid container spacing={0} justifyContent={'center'}>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={8} lg={6}>
             <Box
               sx={{
                 color: 'white',
