@@ -8,11 +8,17 @@ import Image from 'next/image'
 import { Box } from '@mui/system'
 import Grid from '@mui/material/Grid'
 
-const SearchPropertiesPage = ({ data }) => {
+const SearchPropertiesPage = ({ data, query }) => {
   return (
     <>
-      <PropertySearchBar />
-      <Container maxWidth='lg'>
+      <PropertySearchBar
+        operationFromQuery={query.operation}
+        typeFromQuery={query.type}
+        locationFromQuery={query.location}
+        minFromQuery={query.min}
+        maxFromQuery={query.max}
+      />
+      <Container maxWidth='lg' sx={{ mt: 1 }}>
         <PropertyCardList data={data} />
         {data.length === 0 && (
           <Grid
@@ -60,8 +66,6 @@ export const getServerSideProps = async (ctx) => {
     searchQuery.city = query.location
   }
 
-  console.log(searchQuery)
-
   await mongoose.connect(
     connectionString,
     () => {
@@ -81,6 +85,7 @@ export const getServerSideProps = async (ctx) => {
   return {
     props: {
       data,
+      query,
     },
   }
 }
