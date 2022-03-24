@@ -91,7 +91,7 @@ const PropertySearchBar = () => {
         justifyContent={'center'}
         alignItems={'center'}
       >
-        <Grid item xs={12} lg>
+        <Grid item xs={12} md>
           <SelectMenu
             label='I want to'
             dataToSelect={operationList}
@@ -105,29 +105,29 @@ const PropertySearchBar = () => {
             }}
             value={operation}
             required={true}
-            sx={{ mr: { lg: '5px' } }}
+            sx={{ mr: { md: '5px' } }}
           />
         </Grid>
 
-        <Grid item xs={12} md={6} lg>
+        <Grid item xs={12} sm={6} md>
           <SelectMenu
             label='Type'
             dataToSelect={typeList}
             handleChange={(event) => setType(event.target.value)}
             value={type}
-            sx={{ mr: { md: '5px' }, ml: { lg: '5px' } }}
+            sx={{ mr: { sm: '5px' }, ml: { md: '5px' } }}
           />
         </Grid>
-        <Grid item xs={12} md={6} lg>
+        <Grid item xs={12} sm={6} md>
           <SelectMenu
             label='Location'
             dataToSelect={locationList}
             handleChange={(event) => setLocation(event.target.value)}
             value={location}
-            sx={{ ml: { md: '5px' }, mr: { lg: '5px' } }}
+            sx={{ ml: { sm: '5px' }, mr: { md: '5px' } }}
           />
         </Grid>
-        <Grid item xs={12} md={6} lg>
+        <Grid item xs={12} sm={6} md>
           <SelectMenu
             label='From'
             dataToSelect={minList.slice(0, -1)}
@@ -141,10 +141,10 @@ const PropertySearchBar = () => {
             }}
             value={min}
             disabled={operation ? false : true}
-            sx={{ mr: { md: '5px' }, ml: { lg: '5px' } }}
+            sx={{ mr: { sm: '5px' }, ml: { md: '5px' } }}
           />
         </Grid>
-        <Grid item xs={12} md={6} lg>
+        <Grid item xs={12} sm={6} md>
           <SelectMenu
             label='To'
             dataToSelect={maxList}
@@ -152,7 +152,7 @@ const PropertySearchBar = () => {
             handleChange={(event) => setMax(event.target.value)}
             value={max}
             disabled={min ? false : true}
-            sx={{ ml: { md: '5px' } }}
+            sx={{ ml: { sm: '5px' } }}
           />
         </Grid>
         <Grid item xs={12}>

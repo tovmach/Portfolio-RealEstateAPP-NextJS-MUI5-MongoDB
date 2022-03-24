@@ -11,8 +11,8 @@ import Grid from '@mui/material/Grid'
 const SearchPropertiesPage = ({ data }) => {
   return (
     <>
+      <PropertySearchBar />
       <Container maxWidth='lg'>
-        <PropertySearchBar />
         <PropertyCardList data={data} />
         {data.length === 0 && (
           <Grid

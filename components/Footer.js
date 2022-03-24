@@ -19,7 +19,8 @@ const Footer = () => {
             <Typography
               sx={{
                 a: { textDecoration: 'none', color: 'primary.main' },
-                fontSize: 15,
+                fontSize: 14,
+                color: '#58585D',
               }}
             >
               {'Copyright © '}
