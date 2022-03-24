@@ -12,67 +12,62 @@ export default function SelectMenu({
   value,
   disabled,
   required,
+  sx,
 }) {
   return (
-    <Box
-      sx={{
-        width: 185,
-      }}
-    >
-      <FormControl fullWidth disabled={disabled} required={required}>
-        <InputLabel
-          id='demo-simple-select-label'
-          sx={{
+    <FormControl fullWidth disabled={disabled} required={required}>
+      <InputLabel
+        id='demo-simple-select-label'
+        sx={{
+          color: 'white',
+          '&.Mui-focused.MuiFormLabel-root': { color: 'white' },
+          '&.Mui-disabled': { color: 'rgb(255 255 255 / 38%)' },
+        }}
+      >
+        {label}
+      </InputLabel>
+      <Select
+        labelId='demo-simple-select-label'
+        id='demo-simple-select'
+        value={value}
+        label={label}
+        onChange={handleChange}
+        variant='outlined'
+        sx={{
+          ' & .MuiSvgIcon-root': {
             color: 'white',
-            '&.Mui-focused.MuiFormLabel-root': { color: 'white' },
-            '&.Mui-disabled': { color: 'rgb(255 255 255 / 38%)' },
-          }}
-        >
-          {label}
-        </InputLabel>
-        <Select
-          labelId='demo-simple-select-label'
-          id='demo-simple-select'
-          value={value}
-          label={label}
-          onChange={handleChange}
-          variant='outlined'
-          sx={{
-            ' & .MuiSvgIcon-root': {
-              color: 'white',
-            },
-            ' &.Mui-disabled .MuiSvgIcon-root': {
-              color: 'rgb(255 255 255 / 38%)',
-            },
+          },
+          ' &.Mui-disabled .MuiSvgIcon-root': {
+            color: 'rgb(255 255 255 / 30%)',
+          },
 
-            color: 'white',
-            mr: 2,
+          color: 'white',
 
-            '.MuiOutlinedInput-notchedOutline': {
-              borderColor: 'rgb(255 255 255 / 60%)',
-            },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'white',
-            },
-            '&.Mui-disabled:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'rgb(255 255 255 / 38%)',
-            },
-            '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'rgb(255 255 255 / 38%)',
-            },
+          '.MuiOutlinedInput-notchedOutline': {
+            borderColor: 'rgb(255 255 255 / 100%)',
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white',
+          },
+          '&.Mui-disabled:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'rgb(255 255 255 / 30%)',
+          },
+          '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'rgb(255 255 255 / 30%)',
+          },
 
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'white',
-            },
-          }}
-        >
-          {dataToSelect.map((item) => (
-            <MenuItem value={item.value} key={item.text}>
-              {item.text}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </Box>
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'white',
+          },
+          ...sx,
+        }}
+      >
+        {dataToSelect.map((item) => (
+          <MenuItem value={item.value} key={item.text}>
+            {item.text}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   )
 }

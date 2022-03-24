@@ -5,6 +5,7 @@ import { useState } from 'react'
 import SelectMenu from './ui/SelectMenu'
 import Button from '@mui/material/Button'
 import Link from './Link'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const PropertySearchBar = () => {
   const [operation, setOperation] = useState('')
@@ -14,6 +15,8 @@ const PropertySearchBar = () => {
   const [max, setMax] = useState('')
   const [maxList, setMaxList] = useState([])
   const [minList, setMinList] = useState([])
+
+  const matchesSM = useMediaQuery('(max-width:600px)')
 
   const operationList = [
     { text: 'Buy', value: 'buy' },
@@ -70,18 +73,25 @@ const PropertySearchBar = () => {
   ]
 
   return (
-    <Container maxWidth='lg'>
+    <Container maxWidth='lg' disableGutters={matchesSM}>
       <Grid
         container
         sx={{
           bgcolor: 'secondary.main',
-          p: 5,
-          borderRadius: 2,
+          // pr: '20px',
+          // pb: '20px',
+          // pl: '10px',
+          // pt: '10px',
+          p: '25px',
+          borderRadius: { xs: 0, sm: 2 },
+          '.MuiFormControl-root': {
+            mb: '10px',
+          },
         }}
         justifyContent={'center'}
         alignItems={'center'}
       >
-        <Grid item>
+        <Grid item xs={12} lg>
           <SelectMenu
             label='I want to'
             dataToSelect={operationList}
@@ -95,25 +105,29 @@ const PropertySearchBar = () => {
             }}
             value={operation}
             required={true}
+            sx={{ mr: { lg: '5px' } }}
           />
         </Grid>
-        <Grid item>
+
+        <Grid item xs={12} md={6} lg>
           <SelectMenu
             label='Type'
             dataToSelect={typeList}
             handleChange={(event) => setType(event.target.value)}
             value={type}
+            sx={{ mr: { md: '5px' }, ml: { lg: '5px' } }}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={6} lg>
           <SelectMenu
             label='Location'
             dataToSelect={locationList}
             handleChange={(event) => setLocation(event.target.value)}
             value={location}
+            sx={{ ml: { md: '5px' }, mr: { lg: '5px' } }}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={6} lg>
           <SelectMenu
             label='From'
             dataToSelect={minList.slice(0, -1)}
@@ -127,9 +141,10 @@ const PropertySearchBar = () => {
             }}
             value={min}
             disabled={operation ? false : true}
+            sx={{ mr: { md: '5px' }, ml: { lg: '5px' } }}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} md={6} lg>
           <SelectMenu
             label='To'
             dataToSelect={maxList}
@@ -137,26 +152,34 @@ const PropertySearchBar = () => {
             handleChange={(event) => setMax(event.target.value)}
             value={max}
             disabled={min ? false : true}
+            sx={{ ml: { md: '5px' } }}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <Button
-            variant='contained'
+            variant='outlined'
             color='primary'
             component={Link}
-            href={
-              `/properties/search?${
-                operation && 'operation=' + operation + '&'
-              }${type && 'type=' + type + '&'}${
-                location && 'location=' + location + '&'
-              }${min && 'min=' + min + '&'}${max && 'max=' + max}`
-
-              //   `/properties${operation && '/' + operation}${
-              //   type && '/' + type
-              // }${location && '/' + location}${min && '/' + min}${
-              //   max && '/' + max
-              // }`
-            }
+            href={`/properties/search?${
+              operation && 'operation=' + operation + '&'
+            }${type && 'type=' + type + '&'}${
+              location && 'location=' + location + '&'
+            }${min && 'min=' + min + '&'}${max && 'max=' + max}`}
+            sx={{
+              width: '100%',
+              border: 'solid 1px #ffffff',
+              color: '#ffffff',
+              '&:hover': {
+                backgroundColor: 'rgb(255 255 255 / 10%)',
+                borderColor: '#ffffff',
+                color: 'white',
+              },
+              '&.Mui-disabled': {
+                color: 'rgb(255 255 255 / 30%)',
+                border: '1px solid rgb(255 255 255 / 30%)',
+              },
+              fontSize: 15,
+            }}
             disabled={operation && min && max ? false : true}
           >
             Search Now
