@@ -7,6 +7,7 @@ import Button from '@mui/material/Button'
 import Link from './Link'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import { useEffect } from 'react'
+import { CircularProgress } from '@mui/material'
 
 const operationList = [
   { text: 'Buy', value: 'buy' },
@@ -69,6 +70,8 @@ const PropertySearchBar = ({
   minFromQuery,
   maxFromQuery,
 }) => {
+  const [loading, setLoading] = useState(false)
+
   const [operation, setOperation] = useState('')
   const [type, setType] = useState('')
   const [location, setLocation] = useState('')
@@ -80,6 +83,7 @@ const PropertySearchBar = ({
   const matchesSM = useMediaQuery('(max-width:600px)')
 
   useEffect(() => {
+    setLoading(false)
     if (operationFromQuery && operation === '') {
       setOperation(operationFromQuery)
       setMinList(operationFromQuery === 'buy' ? buyPriceList : rentPriceList)
@@ -227,8 +231,17 @@ const PropertySearchBar = ({
               fontSize: 14,
             }}
             disabled={operation && min && max ? false : true}
+            onClick={() => {
+              if (+minFromQuery !== min || +maxFromQuery !== max) {
+                setLoading(true)
+              }
+            }}
           >
-            Search Now
+            {loading ? (
+              <CircularProgress size={24} sx={{ color: 'white' }} />
+            ) : (
+              'Search Now'
+            )}
           </Button>
         </Grid>
       </Grid>
