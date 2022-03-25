@@ -175,7 +175,7 @@ const PropertySearchBar = ({
                 minList.filter((price) => price.value > event.target.value)
               )
 
-              if (event.target.value >= max) {
+              if (event.target.value >= max && max !== '') {
                 console.log('runing')
                 setMax(500000000)
               }
