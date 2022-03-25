@@ -32,7 +32,7 @@ const DesktopNav = () => {
   })
 
   return (
-    <Box sx={{ mb: { xs: 1, sm: 3 } }}>
+    <Box sx={{ mb: 1 }}>
       <AppBar
         position='static'
         sx={{ background: 'transparent', boxShadow: 'none' }}
