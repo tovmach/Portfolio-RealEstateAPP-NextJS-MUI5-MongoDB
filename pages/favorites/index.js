@@ -6,9 +6,11 @@ import axios from 'axios'
 import Typography from '@mui/material/Typography'
 import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
-import { Box } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { useFavoritesPropertiesList } from '../../components/likeButton/FavoritesPropertiesListContext'
 import PageTitle from '../../components/ui/PageTitle'
+import Image from 'next/image'
+import NoDataMessage from '../../components/ui/NoDataMessage'
 
 const FavoritesPage = () => {
   const ctxFavoritesPropertyListContext = useFavoritesPropertiesList()
@@ -51,7 +53,7 @@ const FavoritesPage = () => {
       {loading ? (
         <CircularProgress color='secondary' sx={{ mx: 'auto' }} />
       ) : favoritesData.length === 0 ? (
-        <Box sx={{ mx: 'auto', mt: 2 }}>No Favorites</Box>
+        <NoDataMessage text={"You didn't like any properties yet"} />
       ) : (
         <PropertyCardList data={favoritesData} />
       )}
@@ -60,3 +62,26 @@ const FavoritesPage = () => {
 }
 
 export default FavoritesPage
+
+{
+  /* <Container maxWidth='lg' sx={{ mt: 1 }}>
+  <Grid
+    container
+    justifyContent={'center'}
+    sx={{ mt: { xs: 3, md: 5 } }}
+  >
+    <Grid item>
+      <Image
+        src={'/webMedia/Empty_street.svg'}
+        width={500}
+        height={320}
+        objectFit='contain' // or objectFit="cover"
+        alt={'No properties found'}
+      />
+      <Box sx={{ textAlign: 'center', color: '#58585D' }}>
+        You dident like any propertyes yet
+      </Box>
+    </Grid>
+  </Grid>
+</Container> */
+}

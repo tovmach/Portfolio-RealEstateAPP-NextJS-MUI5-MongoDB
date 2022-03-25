@@ -10,6 +10,7 @@ import CircularProgress from '@mui/material/CircularProgress'
 import { Box } from '@mui/material'
 import PropertyCardList from '../../components/Card/PropertyCardList'
 import PageTitle from '../../components/ui/PageTitle'
+import NoDataMessage from '../../components/ui/NoDataMessage'
 
 const ContactUsPage = () => {
   const ctxContactedPropertiesList = useContactedPropertiesList()
@@ -56,9 +57,7 @@ const ContactUsPage = () => {
       {loading ? (
         <CircularProgress color='secondary' sx={{ mx: 'auto' }} />
       ) : contactedPropertiesData.length === 0 ? (
-        <Box sx={{ mx: 'auto', mt: 2 }}>
-          You didn&rsquo;t show interest in any property yet
-        </Box>
+        <NoDataMessage text={"You didn't show interest in any property yet"} />
       ) : (
         <PropertyCardList data={contactedPropertiesData} />
       )}
