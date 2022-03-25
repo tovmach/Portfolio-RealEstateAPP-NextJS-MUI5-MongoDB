@@ -9,6 +9,7 @@ import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Box } from '@mui/material'
 import PropertyCardList from '../../components/Card/PropertyCardList'
+import PageTitle from '../../components/ui/PageTitle'
 
 const ContactUsPage = () => {
   const ctxContactedPropertiesList = useContactedPropertiesList()
@@ -49,14 +50,8 @@ const ContactUsPage = () => {
   return (
     <>
       <ContactForm />
-      <Container maxWidth='lg'>
-        <Typography variant='h2' color='secondary' sx={{ fontSize: '2rem' }}>
-          Contacted List
-        </Typography>
-        <Typography variant='h1' color='primary' sx={{ fontSize: '2.75rem' }}>
-          Properties you contacted us about
-        </Typography>
-      </Container>
+
+      <PageTitle h1={'Properties'} h2={'You contacted us about'} />
 
       {loading ? (
         <CircularProgress color='secondary' sx={{ mx: 'auto' }} />
