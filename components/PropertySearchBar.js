@@ -30,22 +30,17 @@ const typeList = [
 
 const buyPriceList = [
   { text: '25.000€', value: 25000 },
-  { text: '50.000€', value: 50000 },
   { text: '100.000€', value: 100000 },
   { text: '150.000€', value: 150000 },
   { text: '200.000€', value: 200000 },
-  { text: '250.000€', value: 250000 },
   { text: '300.000€', value: 300000 },
   { text: '500.000€', value: 500000 },
   { text: '750.000€', value: 750000 },
   { text: '1.000.000€', value: 1000000 },
   { text: '1.500.000€', value: 1500000 },
   { text: '2.000.000€', value: 2000000 },
-  { text: '2.500.000€', value: 2500000 },
   { text: '3.000.000€', value: 3000000 },
-  { text: '3.500.000€', value: 3500000 },
   { text: '4.000.000€', value: 4000000 },
-  { text: '4.500.000€', value: 4500000 },
   { text: '5.000.000€', value: 5000000 },
   { text: 'Any Price', value: 500000000 },
 ]

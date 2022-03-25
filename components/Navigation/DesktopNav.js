@@ -16,16 +16,20 @@ import { useState } from 'react'
 import Badge from '@mui/material/Badge'
 import { useFavoritesPropertiesList } from '../likeButton/FavoritesPropertiesListContext'
 import { useContactedPropertiesList } from '../contactButton/ContactPropertyListContext'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
+import HomeIcon from '@mui/icons-material/Home'
 
 const DesktopNav = () => {
   const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
   const ctxContactedPropertiesList = useContactedPropertiesList()
 
+  const [homeTab, setHomeTab] = useState(false)
   const [propertiesTab, setPropertiesTab] = useState(false)
   const [favoritesTab, setFavoritesTab] = useState(false)
   const [contactusTab, setContactusTab] = useState(false)
 
   useEffect(() => {
+    setHomeTab(window.location.pathname.split('/')[1] === '')
     setPropertiesTab(window.location.pathname.split('/')[1] === 'properties')
     setFavoritesTab(window.location.pathname.split('/')[1] === 'favorites')
     setContactusTab(window.location.pathname.split('/')[1] === 'contactus')
@@ -73,6 +77,19 @@ const DesktopNav = () => {
                 sx={{
                   fontSize: 18,
                   textTransform: 'none',
+                  bgcolor: homeTab && '#D9E5EC',
+                }}
+                component={Link}
+                href={'/'}
+                startIcon={<HomeIcon sx={{ color: 'secondary.main' }} />}
+              >
+                Home
+              </Button>
+              <Button
+                color='primary'
+                sx={{
+                  fontSize: 18,
+                  textTransform: 'none',
                   bgcolor: propertiesTab && '#D9E5EC',
                 }}
                 component={Link}
@@ -97,7 +114,9 @@ const DesktopNav = () => {
                 }}
                 component={Link}
                 href={'/favorites'}
-                startIcon={<FavoriteBorderIcon />}
+                startIcon={
+                  <FavoriteBorderIcon sx={{ color: 'secondary.main' }} />
+                }
               >
                 <Badge
                   badgeContent={ctxFavoritesPropertiesList.favorites.length}
@@ -122,7 +141,7 @@ const DesktopNav = () => {
                 }}
                 component={Link}
                 href={'/contactus'}
-                startIcon={<TelegramIcon />}
+                startIcon={<TelegramIcon sx={{ color: 'secondary.main' }} />}
               >
                 <Badge
                   badgeContent={
