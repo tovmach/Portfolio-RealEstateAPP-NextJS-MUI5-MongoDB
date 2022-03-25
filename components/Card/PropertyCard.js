@@ -26,6 +26,7 @@ import Link from '../Link'
 import Image from 'next/image'
 import LikeButton from '../likeButton/LikeButton'
 import ContactButton from '../contactButton/ContactButton'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -46,12 +47,22 @@ const PropertyCard = ({
   province,
 }) => {
   return (
-    <Card sx={{ maxWidth: 350 }}>
-      {/* <CardMedia component='img' height='250' image={src} alt='Paella dish' /> */}
-      {/* <CardMedia component={Link} href={`/properties/${_id}`}>
-        <Image src={'/villa.jpg'} alt={'Property'} width={350} height={250} />
-      </CardMedia> */}
-      <CardMedia component='img' height='250' image={img} alt='Paella dish' />
+    <Card sx={{ maxWidth: 345 }}>
+      <CardMedia
+        sx={{ height: 250, width: 345 }}
+        component={Link}
+        href={`/properties/${_id}`}
+      >
+        <Box sx={{ position: 'relative', width: '100%', height: '100%' }}>
+          <Image
+            src={img}
+            layout='fill'
+            objectFit='cover'
+            alt={`${type} in ${city} photo`}
+          />
+        </Box>
+      </CardMedia>
+
       <CardContent>
         <Grid container justifyContent={'space-between'} alignItems={'center'}>
           <Grid item xs>
@@ -67,7 +78,7 @@ const PropertyCard = ({
               {numberWithCommas(price)}
             </Box>
           </Grid>
-          <Grid container item xs={5} justifyContent={'flex-end'}>
+          <Grid container item xs={4} justifyContent={'flex-end'}>
             <Grid item>
               <ContactButton
                 id={_id}
@@ -80,15 +91,6 @@ const PropertyCard = ({
             <Grid item>
               <LikeButton id={_id} />
             </Grid>
-            <Grid item>
-              <IconButton
-                aria-label='add to favorites'
-                component={Link}
-                href={`/properties/${_id}`}
-              >
-                <ReadMoreIcon />
-              </IconButton>
-            </Grid>
           </Grid>
         </Grid>
 
@@ -98,9 +100,11 @@ const PropertyCard = ({
           )}, ${capitalizeFirstLetter(province)}`}
         </Typography>
         <Grid container>
-          <Grid item container mt={2} alignItems={'flex-end'} xs>
+          <Grid item container mt={2} alignItems={'flex-end'} xs={3.7}>
             <Grid item mr={1}>
-              <LivingAreaIcon sx={{ fontSize: 14 }} />
+              <LivingAreaIcon
+                sx={{ fontSize: 14, position: 'relative', top: 1 }}
+              />
             </Grid>
             <Grid item>
               <Typography variant='body2' color='text.secondary'>
@@ -111,9 +115,11 @@ const PropertyCard = ({
               </Typography>
             </Grid>
           </Grid>
-          <Grid item container mt={2} alignItems={'flex-end'} xs>
+          <Grid item container mt={2} alignItems={'flex-end'} xs={3.5}>
             <Grid item mr={1}>
-              <BedroomIcon sx={{ fontSize: 18 }} />
+              <BedroomIcon
+                sx={{ fontSize: 18, position: 'relative', top: 4 }}
+              />
             </Grid>
             <Grid item>
               <Typography variant='body2' color='text.secondary'>
@@ -124,9 +130,11 @@ const PropertyCard = ({
               </Typography>
             </Grid>
           </Grid>
-          <Grid item container mt={2} alignItems={'flex-end'} xs>
+          <Grid item container mt={2} alignItems={'flex-end'} xs={3.5}>
             <Grid item mr={1}>
-              <BathroomIcon sx={{ fontSize: 18 }} />
+              <BathroomIcon
+                sx={{ fontSize: 18, position: 'relative', top: 2 }}
+              />
             </Grid>
             <Grid item>
               <Typography variant='body2' color='text.secondary'>
@@ -137,13 +145,19 @@ const PropertyCard = ({
               </Typography>
             </Grid>
           </Grid>
+
+          <Grid item alignSelf={'flex-end'}>
+            <IconButton
+              aria-label='Read More'
+              component={Link}
+              href={`/properties/${_id}`}
+              sx={{ p: 1 }}
+            >
+              <ArrowForwardIosIcon sx={{ height: 17, width: 17 }} />
+            </IconButton>
+          </Grid>
         </Grid>
       </CardContent>
-      {/* <CardActions disableSpacing>
-          <IconButton aria-label='more'>
-            <ExpandMoreIcon />
-          </IconButton>
-        </CardActions> */}
     </Card>
   )
 }

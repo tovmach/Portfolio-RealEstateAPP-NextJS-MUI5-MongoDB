@@ -4,8 +4,8 @@ import PropertyCardList from '../../components/Card/PropertyCardList'
 
 const data = [
   {
-    price: 1000000,
-    livingArea: 500,
+    price: 10000000,
+    livingArea: 5000,
     bedroom: 20,
     bathroom: 15,
     _id: 1,
