@@ -28,7 +28,7 @@ const data = [
 const BuyRentSellCardList = () => {
   return (
     <>
-      <Grid container spacing={2} justifyContent={'center'}>
+      <Grid container spacing={1.25} justifyContent={'center'}>
         {data.map((card) => (
           <Grid item key={card.title}>
             <BuyRentSellCard

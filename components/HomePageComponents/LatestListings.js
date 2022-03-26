@@ -10,10 +10,10 @@ const LatestListings = ({ data }) => {
     <>
       <Box my={2}>
         <ComponentTitle h2={'New Properties'} h3={'Latest Listings'} />
-        <Box sx={{ display: { xs: 'none', slg: 'block' } }}>
+        <Box sx={{ display: { xs: 'none', xlg: 'block' } }}>
           <PropertyCardList data={data} />
         </Box>
-        <Box sx={{ display: { xs: 'block', slg: 'none' } }}>
+        <Box sx={{ display: { xs: 'block', xlg: 'none' } }}>
           <PropertyCardList data={[data[0], data[1]]} />
         </Box>
       </Box>

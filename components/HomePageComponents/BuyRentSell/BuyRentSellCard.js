@@ -13,7 +13,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'
 const BuyRentSellCard = ({ title, img, text, url, buttonText }) => {
   const matchesSM = useMediaQuery('(max-width:599px)')
   const matchesMD = useMediaQuery('(min-width:600px)')
-  const matchesLG = useMediaQuery('(min-width:1129.4px)')
+  const matchesLG = useMediaQuery('(min-width:1080px)')
 
   return (
     <Card
