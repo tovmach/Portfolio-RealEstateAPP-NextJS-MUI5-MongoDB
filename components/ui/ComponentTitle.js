@@ -3,7 +3,7 @@ import { Container } from '@mui/material'
 import { Typography } from '@mui/material'
 import { Box } from '@mui/system'
 
-const PageTitle = ({ h1, h2 }) => {
+const ComponentTitle = ({ h2, h3 }) => {
   return (
     <>
       {/* <Box
@@ -16,14 +16,14 @@ const PageTitle = ({ h1, h2 }) => {
       > */}
       <Container maxWidth='lg'>
         <Typography
-          variant='h1'
+          variant='h2'
           color='secondary'
           sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}
         >
-          {h1}
+          {h2}
         </Typography>
         <Typography
-          variant='h2'
+          variant='h3'
           color='primary'
           sx={{
             fontSize: {
@@ -34,7 +34,7 @@ const PageTitle = ({ h1, h2 }) => {
             top: { xs: -7, sm: -10 },
           }}
         >
-          {h2}
+          {h3}
         </Typography>
       </Container>
 
@@ -43,4 +43,4 @@ const PageTitle = ({ h1, h2 }) => {
   )
 }
 
-export default PageTitle
+export default ComponentTitle

@@ -8,7 +8,7 @@ import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Box, Grid } from '@mui/material'
 import { useFavoritesPropertiesList } from '../../components/likeButton/FavoritesPropertiesListContext'
-import PageTitle from '../../components/ui/PageTitle'
+import ComponentTitle from '../../components/ui/ComponentTitle'
 import Image from 'next/image'
 import NoDataMessage from '../../components/ui/NoDataMessage'
 
@@ -48,7 +48,7 @@ const FavoritesPage = () => {
 
   return (
     <>
-      <PageTitle h1={'Favorites'} h2={'Properties you liked'} />
+      <ComponentTitle h2={'Favorites'} h3={'Properties you liked'} />
 
       {loading ? (
         <CircularProgress color='secondary' sx={{ mx: 'auto' }} />
@@ -62,26 +62,3 @@ const FavoritesPage = () => {
 }
 
 export default FavoritesPage
-
-{
-  /* <Container maxWidth='lg' sx={{ mt: 1 }}>
-  <Grid
-    container
-    justifyContent={'center'}
-    sx={{ mt: { xs: 3, md: 5 } }}
-  >
-    <Grid item>
-      <Image
-        src={'/webMedia/Empty_street.svg'}
-        width={500}
-        height={320}
-        objectFit='contain' // or objectFit="cover"
-        alt={'No properties found'}
-      />
-      <Box sx={{ textAlign: 'center', color: '#58585D' }}>
-        You dident like any propertyes yet
-      </Box>
-    </Grid>
-  </Grid>
-</Container> */
-}

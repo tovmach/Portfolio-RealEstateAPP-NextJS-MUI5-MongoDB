@@ -9,7 +9,7 @@ import Container from '@mui/material/Container'
 import CircularProgress from '@mui/material/CircularProgress'
 import { Box } from '@mui/material'
 import PropertyCardList from '../../components/Card/PropertyCardList'
-import PageTitle from '../../components/ui/PageTitle'
+import ComponentTitle from '../../components/ui/ComponentTitle'
 import NoDataMessage from '../../components/ui/NoDataMessage'
 
 const ContactUsPage = () => {
@@ -61,7 +61,7 @@ const ContactUsPage = () => {
         Contact us
       </Box>
       <ContactForm />
-      <PageTitle h1={'Properties'} h2={'You contacted us about'} />
+      <ComponentTitle h2={'Properties'} h3={'You contacted us about'} />
 
       {loading ? (
         <CircularProgress color='secondary' sx={{ mx: 'auto' }} />

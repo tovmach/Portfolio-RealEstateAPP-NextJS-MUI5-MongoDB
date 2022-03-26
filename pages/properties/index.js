@@ -26,7 +26,9 @@ export const getStaticProps = async () => {
 
   let data = await Property.find({
     operation: 'buy',
-  }).lean()
+  })
+    .lean()
+    .sort({ $natural: -1 })
 
   data = JSON.parse(JSON.stringify(data))
 
