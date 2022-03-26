@@ -4,7 +4,14 @@ import BuyRentSellCardList from './BuyRentSellCardList'
 
 const BuyRentSellContainer = () => {
   return (
-    <Box sx={{ bgcolor: 'secondary.main', my: 2, py: 5 }}>
+    <Box
+      sx={{
+        bgcolor: 'secondary.main',
+        my: 2,
+        py: 5,
+        backgroundImage: "url('/webMedia/topography.svg')",
+      }}
+    >
       <Grid container spacing={0} justifyContent={'center'}>
         <Grid item xs={12} sm={8} lg={6}>
           <Box
