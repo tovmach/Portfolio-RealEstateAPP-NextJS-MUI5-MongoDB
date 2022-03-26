@@ -8,7 +8,7 @@ const PropertyCardList = ({ data }) => {
     <>
       <Box
         sx={{
-          width: { xs: 345, xmd: 730, lg: 1095 },
+          width: { xs: 345, xmd: 710, lg: 1065 },
           mx: 'auto',
         }}
       >
@@ -18,7 +18,7 @@ const PropertyCardList = ({ data }) => {
             sx={{
               display: 'inline-block',
               my: { xs: '5px', sm: '5px' },
-              mx: { sm: '10px' },
+              mx: { sm: '5px' },
             }}
           >
             <PropertyCard

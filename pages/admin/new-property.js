@@ -24,6 +24,7 @@ const NewProperty = () => {
 
   const onSubmitHandler = () => {
     axios.post('/api/add-property', {
+      operation,
       type,
       price,
       city,
