@@ -105,8 +105,8 @@ const ContactForm = () => {
 
   return (
     <Container maxWidth='lg'>
-      <Grid container spacing={1.5} direction={'column'}>
-        <Grid item>
+      <Grid container spacing={1.5} mb={3}>
+        <Grid item xs={12} md={4}>
           <TextField
             required
             fullWidth
@@ -120,7 +120,7 @@ const ContactForm = () => {
             value={name}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} sm={6} md={4}>
           <TextField
             required
             fullWidth
@@ -134,7 +134,7 @@ const ContactForm = () => {
             value={phone}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12} sm={6} md={4}>
           <TextField
             required
             fullWidth
@@ -149,7 +149,7 @@ const ContactForm = () => {
             value={email}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <TextField
             required
             fullWidth
@@ -165,8 +165,9 @@ const ContactForm = () => {
             value={message}
           />
         </Grid>
-        <Grid item>
+        <Grid item xs={12}>
           <Button
+            sx={{ width: '100%' }}
             variant='outlined'
             onClick={sendFormHandler}
             disabled={

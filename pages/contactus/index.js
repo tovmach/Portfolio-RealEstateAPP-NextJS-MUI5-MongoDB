@@ -50,8 +50,17 @@ const ContactUsPage = () => {
 
   return (
     <>
+      <Box
+        sx={{
+          textAlign: 'center',
+          fontSize: '2rem',
+          mb: 1,
+          color: 'primary.main',
+        }}
+      >
+        Contact us
+      </Box>
       <ContactForm />
-
       <PageTitle h1={'Properties'} h2={'You contacted us about'} />
 
       {loading ? (
