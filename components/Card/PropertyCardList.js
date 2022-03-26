@@ -17,11 +17,12 @@ const PropertyCardList = ({ data }) => {
             key={property._id}
             sx={{
               display: 'inline-block',
-              my: { xs: '5px', sm: '10px' },
+              my: { xs: '5px', sm: '5px' },
               mx: { sm: '10px' },
             }}
           >
             <PropertyCard
+              operation={property.operation}
               type={property.type}
               price={property.price}
               livingArea={property.livingArea}
@@ -30,7 +31,6 @@ const PropertyCardList = ({ data }) => {
               _id={property._id}
               img={property.img}
               city={property.city}
-              province={property.province}
             />
           </Box>
         ))}

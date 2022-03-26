@@ -6,7 +6,7 @@ import SendIcon from '@mui/icons-material/Send'
 import ContactButtonDialog from './ContactButtonDialog'
 import { useContactedPropertiesList } from './ContactPropertyListContext'
 
-const ContactButton = ({ id, price, type, city, province }) => {
+const ContactButton = ({ id, price, type, city, operation }) => {
   const [openDialog, setOpenDialog] = useState(false)
   const [contactButtonActiv, setContactButtonActiv] = useState(false)
 
@@ -34,7 +34,7 @@ const ContactButton = ({ id, price, type, city, province }) => {
         price={price}
         type={type}
         city={city}
-        province={province}
+        operation={operation}
         contactButtonActiv={contactButtonActiv}
         setContactButtonActiv={setContactButtonActiv}
       />

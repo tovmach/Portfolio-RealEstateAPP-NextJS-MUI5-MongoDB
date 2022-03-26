@@ -36,9 +36,9 @@ const ContactButtonDialog = ({
   price,
   type,
   city,
-  province,
   contactButtonActiv,
   setContactButtonActiv,
+  operation,
 }) => {
   const ctxContactData = useContactData()
   const ctxNotification = useNotification()
@@ -109,12 +109,10 @@ const ContactButtonDialog = ({
 
   useEffect(() => {
     setMessage(
-      `I'm interested in the ${capitalizeFirstLetter(
-        type
-      )} (ref: ${id}) located in ${capitalizeFirstLetter(
+      `I'm interested in the ${capitalizeFirstLetter(type)} for ${
+        operation === 'buy' ? 'sale' : 'rent'
+      } (ref: ${id}) located in ${capitalizeFirstLetter(
         city
-      )}, ${capitalizeFirstLetter(
-        province
       )} whit the price of ${numberWithCommas(price)}€`
     )
     const contactData = ctxContactData.contactData
@@ -124,7 +122,7 @@ const ContactButtonDialog = ({
       setPhone(contactData.phone)
       setEmail(contactData.email)
     }
-  }, [ctxContactData.contactData, id, price, type, city, province])
+  }, [ctxContactData.contactData, id, price, type, city])
 
   const sendFormHandler = () => {
     ctxNotification.showNotification('Sending Email', 'info')

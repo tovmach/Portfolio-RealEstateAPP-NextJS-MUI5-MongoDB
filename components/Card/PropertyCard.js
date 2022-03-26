@@ -36,6 +36,7 @@ const numberWithCommas = (num) => {
 }
 
 const PropertyCard = ({
+  operation,
   price,
   livingArea,
   bedroom,
@@ -44,7 +45,6 @@ const PropertyCard = ({
   img,
   type,
   city,
-  province,
 }) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -85,7 +85,7 @@ const PropertyCard = ({
                 price={price}
                 type={type}
                 city={city}
-                province={province}
+                operation={operation}
               />
             </Grid>
             <Grid item>
@@ -95,9 +95,9 @@ const PropertyCard = ({
         </Grid>
 
         <Typography variant='body2' color='text.secondary'>
-          {`${capitalizeFirstLetter(type)} in ${capitalizeFirstLetter(
-            city
-          )}, ${capitalizeFirstLetter(province)}`}
+          {`${capitalizeFirstLetter(type)} for ${
+            operation === 'buy' ? 'Sale' : 'Rent'
+          } in ${capitalizeFirstLetter(city)}`}
         </Typography>
         <Grid container>
           <Grid item container mt={2} alignItems={'flex-end'} xs={3.7}>
