@@ -6,6 +6,7 @@ import mongoose from 'mongoose'
 import Property from '../models/propertyModel'
 import LatestListings from '../components/HomePageComponents/LatestListings'
 import Services from '../components/HomePageComponents/Services'
+import Staff from '../components/HomePageComponents/Staff'
 
 const Home = ({ data }) => {
   return (
@@ -14,6 +15,7 @@ const Home = ({ data }) => {
       <PropertySearchBar />
       <LatestListings data={data} />
       <BuyRentSellContainer />
+      <Staff />
       <Services />
     </>
   )

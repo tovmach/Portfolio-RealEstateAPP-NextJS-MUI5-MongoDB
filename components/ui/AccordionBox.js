@@ -67,7 +67,7 @@ const AccordionBox = () => {
           <Typography sx={{ fontWeight: 'bold' }}>Buy and Sell</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography sx={{ color: 'rgba(0, 0, 0, 0.75)' }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
@@ -87,7 +87,7 @@ const AccordionBox = () => {
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography sx={{ color: 'rgba(0, 0, 0, 0.75)' }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
@@ -105,7 +105,7 @@ const AccordionBox = () => {
           <Typography sx={{ fontWeight: 'bold' }}>Judicial Auctions</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
+          <Typography sx={{ color: 'rgba(0, 0, 0, 0.75)' }}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
             malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
             dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
