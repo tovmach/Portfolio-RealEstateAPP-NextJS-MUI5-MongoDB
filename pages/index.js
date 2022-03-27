@@ -5,6 +5,7 @@ import BuyRentSellContainer from '../components/HomePageComponents/BuyRentSell/B
 import mongoose from 'mongoose'
 import Property from '../models/propertyModel'
 import LatestListings from '../components/HomePageComponents/LatestListings'
+import Services from '../components/HomePageComponents/Services'
 
 const Home = ({ data }) => {
   return (
@@ -13,6 +14,7 @@ const Home = ({ data }) => {
       <PropertySearchBar />
       <LatestListings data={data} />
       <BuyRentSellContainer />
+      <Services />
     </>
   )
 }
