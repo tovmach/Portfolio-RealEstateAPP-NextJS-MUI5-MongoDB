@@ -61,7 +61,9 @@ const ContactUsPage = () => {
         Contact us
       </Box>
       <ContactForm />
-      <ComponentTitle h2={'Properties'} h3={'You contacted us about'} />
+      <Container maxWidth='lg'>
+        <ComponentTitle h2={'Properties'} h3={'You contacted us about'} />
+      </Container>
 
       {loading ? (
         <CircularProgress color='secondary' sx={{ mx: 'auto' }} />

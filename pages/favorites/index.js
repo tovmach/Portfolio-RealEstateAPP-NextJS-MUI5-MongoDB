@@ -48,7 +48,9 @@ const FavoritesPage = () => {
 
   return (
     <>
-      <ComponentTitle h2={'Favorites'} h3={'Properties you liked'} />
+      <Container maxWidth='lg'>
+        <ComponentTitle h2={'Favorites'} h3={'Properties you liked'} />
+      </Container>
 
       {loading ? (
         <CircularProgress color='secondary' sx={{ mx: 'auto' }} />

@@ -11,9 +11,8 @@ const ArchPhoto = ({ width, height, img }) => {
       <Box
         sx={{
           bgcolor: '#C5E2E9',
-          width: widthBox,
-          height: heighthBox,
-          m: 3,
+          width: { xs: 345, sm: widthBox - 30, lg: widthBox },
+          height: { xs: 395, sm: heighthBox - 30, lg: heighthBox },
           borderRadius: '300px 300px 10px 10px',
         }}
       >
@@ -21,8 +20,8 @@ const ArchPhoto = ({ width, height, img }) => {
           elevation={6}
           sx={{
             bgcolor: '#C5E2E9',
-            width: widthBox - 40,
-            height: heighthBox - 40,
+            width: { xs: 305, sm: widthBox - 70, lg: widthBox - 40 },
+            height: { xs: 355, sm: heighthBox - 70, lg: heighthBox - 40 },
             borderRadius: '300px 300px 10px 10px',
             overflow: 'hidden',
             position: 'relative',

@@ -1,7 +1,7 @@
 import React from 'react'
 import ComponentTitle from '../ui/ComponentTitle'
 import PropertyCardList from '../Card/PropertyCardList'
-import { Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
@@ -9,7 +9,9 @@ const LatestListings = ({ data }) => {
   return (
     <>
       <Box my={2}>
-        <ComponentTitle h2={'New Properties'} h3={'Latest Listings'} />
+        <Container maxWidth='lg'>
+          <ComponentTitle h2={'New Properties'} h3={'Latest Listings'} />
+        </Container>
         <Box sx={{ display: { xs: 'none', xlg: 'block' } }}>
           <PropertyCardList data={data} />
         </Box>
