@@ -7,7 +7,7 @@ const Staff = () => {
   return (
     <>
       <Container maxWidth='lg'>
-        <Grid container spacing={3} alignItems={'center'}>
+        <Grid container spacing={3} alignItems={'center'} mb={2}>
           <Grid item xs={12} md={6} lg={5}>
             <PhotoStaff img={'/webMedia/staff.png'} />
           </Grid>

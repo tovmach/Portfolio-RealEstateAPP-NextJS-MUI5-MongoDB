@@ -25,7 +25,7 @@ const PhotoStaff = ({ px, img }) => {
           width: { xs: sizeBoxXs - 25, md: sizeBox - 50 },
           height: { xs: sizeBoxXs, md: sizeBox },
           borderRadius: 3,
-          backgroundImage: "url('/webMedia/stripes.svg')",
+          backgroundImage: "url('/webMedia/topography.svg')",
           position: 'relative',
         }}
       >

@@ -3,13 +3,13 @@ import Property from '../../models/propertyModel'
 
 const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.s3o9t.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
+const ITEMS_PER_PAGE = 6
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const listOfIds = req.body.listOfIds
+    const page = req.query.page || 1
 
-    // const documentIds = listOfIds.map(function (myId) {
-    //   return ObjectId(myId)
-    // })
+    const listOfIds = req.body.listOfIds
 
     await mongoose.connect(
       connectionString,
@@ -19,37 +19,26 @@ export default async function handler(req, res) {
       (e) => console.error(e)
     )
 
-    let data = await Property.find({ _id: { $in: listOfIds } }).lean()
+    // const count = await Property.estimatedDocumentCount({
+    //   _id: { $in: listOfIds },
+    // })
+    const count = listOfIds.length
 
-    data = JSON.parse(JSON.stringify(data))
-    return res.status(200).send(data)
-    // const { type, price, city, province, livingArea, bedroom, bathroom, img } =
-    //   req.body
+    const skip = (page - 1) * ITEMS_PER_PAGE
 
-    // await mongoose.connect(
-    //   connectionString,
-    //   () => {
-    //     console.log('connected')
-    //   },
-    //   (e) => console.error(e)
-    // )
+    const pageCount = count / ITEMS_PER_PAGE
+    const pageCountRoundUp = Math.ceil(pageCount)
 
-    // try {
-    //   var property = new Property({
-    //     type,
-    //     price,
-    //     city,
-    //     province,
-    //     livingArea,
-    //     bedroom,
-    //     bathroom,
-    //     img,
-    //   })
-    //   var propertyCreated = await property.save()
-    //   return res.status(200).send(propertyCreated)
-    // } catch (error) {
-    //   return res.status(500).send(error.message)
-    // }
+    const data = await Property.find({ _id: { $in: listOfIds } })
+      .limit(ITEMS_PER_PAGE)
+      .skip(skip)
+      .lean()
+
+    const items = JSON.parse(JSON.stringify(data))
+
+    return res
+      .status(200)
+      .send({ pagination: { count, pageCountRoundUp }, items })
   } else {
     res.status(422).send('req_method_not_supported')
   }
