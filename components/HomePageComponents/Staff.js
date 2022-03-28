@@ -8,10 +8,10 @@ const Staff = () => {
     <>
       <Container maxWidth='lg'>
         <Grid container spacing={3} alignItems={'center'}>
-          <Grid item xs>
-            <PhotoStaff px={400} img={'/webMedia/staff.png'} />
+          <Grid item xs={12} md={6} lg={5}>
+            <PhotoStaff img={'/webMedia/staff.png'} />
           </Grid>
-          <Grid item xs>
+          <Grid item xs={12} md={6} lg={7}>
             <StaffPresentation />
           </Grid>
         </Grid>

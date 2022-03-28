@@ -17,6 +17,16 @@ const Services = () => {
           mb={2}
           justifyContent={'center'}
         >
+          <Grid
+            item
+            sx={{ ml: { md: 4 }, display: { xs: 'block', md: 'none' } }}
+          >
+            <ArchPhoto
+              img={'/webMedia/green-balconies.jpg'}
+              width={400}
+              height={470}
+            />
+          </Grid>
           <Grid item container spacing={0} md>
             <Grid item>
               <ComponentTitle h2={'Services'} h3={'Value We Give To You'} />
@@ -25,7 +35,10 @@ const Services = () => {
               <AccordionBox />
             </Grid>
           </Grid>
-          <Grid item>
+          <Grid
+            item
+            sx={{ ml: { md: 4 }, display: { xs: 'none', md: 'block' } }}
+          >
             <ArchPhoto
               img={'/webMedia/green-balconies.jpg'}
               width={400}

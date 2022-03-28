@@ -15,8 +15,8 @@ const Home = ({ data }) => {
       <PropertySearchBar />
       <LatestListings data={data} />
       <BuyRentSellContainer />
-      <Staff />
       <Services />
+      <Staff />
     </>
   )
 }
