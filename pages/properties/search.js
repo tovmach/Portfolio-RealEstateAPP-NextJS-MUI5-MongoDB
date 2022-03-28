@@ -107,9 +107,9 @@ export const getServerSideProps = async (ctx) => {
 
   let data = await Property.find({
     ...searchQuery,
-    // operation: query.operation,
-    // price: { $gte: query.min, $lte: query.max },
-  }).lean()
+  })
+    .sort({ price: 1 })
+    .lean()
 
   data = JSON.parse(JSON.stringify(data))
 
