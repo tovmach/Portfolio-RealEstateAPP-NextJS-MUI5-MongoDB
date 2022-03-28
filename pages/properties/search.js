@@ -7,8 +7,32 @@ import PropertySearchBar from '../../components/PropertySearchBar'
 import Image from 'next/image'
 import { Box } from '@mui/system'
 import Grid from '@mui/material/Grid'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
+import { useState } from 'react'
+import { useEffect } from 'react'
 
 const SearchPropertiesPage = ({ data, query }) => {
+  const ITEMS_PER_PAGE = 6
+  const count = data.length
+  const pageCount = Math.ceil(count / ITEMS_PER_PAGE)
+
+  const [page, setPage] = useState(1)
+  const [items, setItems] = useState([])
+
+  const handleChange = (event, value) => {
+    setPage(value)
+    const skip = (value - 1) * ITEMS_PER_PAGE
+
+    setItems(data.slice(skip, skip + ITEMS_PER_PAGE))
+  }
+
+  console.log(data)
+
+  useEffect(() => {
+    setItems(data.slice(0, ITEMS_PER_PAGE))
+  }, [data])
+
   return (
     <>
       <PropertySearchBar
@@ -18,29 +42,37 @@ const SearchPropertiesPage = ({ data, query }) => {
         minFromQuery={query.min}
         maxFromQuery={query.max}
       />
-      <Container maxWidth='lg' sx={{ mt: 1 }}>
-        <PropertyCardList data={data} />
-        {data.length === 0 && (
-          <Grid
-            container
-            justifyContent={'center'}
-            sx={{ mt: { xs: 3, md: 5 } }}
-          >
-            <Grid item>
-              <Image
-                src={'/webMedia/feeling_blue.svg'}
-                width={500}
-                height={320}
-                objectFit='contain' // or objectFit="cover"
-                alt={'No properties found'}
+      {data.length > 0 && (
+        <>
+          <PropertyCardList data={items} />
+          {pageCount > 1 && (
+            <Stack spacing={2} mx={'auto'} my={2}>
+              <Pagination
+                count={pageCount}
+                color='secondary'
+                page={page}
+                onChange={handleChange}
               />
-              <Box sx={{ textAlign: 'center', color: '#58585D' }}>
-                No properties found with your search criteria.
-              </Box>
-            </Grid>
+            </Stack>
+          )}
+        </>
+      )}
+      {data.length === 0 && (
+        <Grid container justifyContent={'center'} sx={{ mt: { xs: 3, md: 5 } }}>
+          <Grid item>
+            <Image
+              src={'/webMedia/feeling_blue.svg'}
+              width={500}
+              height={320}
+              objectFit='contain' // or objectFit="cover"
+              alt={'No properties found'}
+            />
+            <Box sx={{ textAlign: 'center', color: '#58585D' }}>
+              No properties found with your search criteria.
+            </Box>
           </Grid>
-        )}
-      </Container>
+        </Grid>
+      )}
     </>
   )
 }

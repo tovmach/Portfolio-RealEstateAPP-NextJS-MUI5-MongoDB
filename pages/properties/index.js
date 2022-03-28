@@ -18,7 +18,6 @@ const PropertiesPage = ({ data }) => {
   const handleChange = (event, value) => {
     setPage(value)
     const skip = (value - 1) * ITEMS_PER_PAGE
-    console.log(skip)
     setItems(data.slice(skip, skip + ITEMS_PER_PAGE))
   }
 
@@ -26,14 +25,16 @@ const PropertiesPage = ({ data }) => {
     <>
       <PropertySearchBar />
       <PropertyCardList data={items} />
-      <Stack spacing={2} mx={'auto'} my={2}>
-        <Pagination
-          count={pageCount}
-          color='secondary'
-          page={page}
-          onChange={handleChange}
-        />
-      </Stack>
+      {pageCount > 1 && (
+        <Stack spacing={2} mx={'auto'} my={2}>
+          <Pagination
+            count={pageCount}
+            color='secondary'
+            page={page}
+            onChange={handleChange}
+          />
+        </Stack>
+      )}
     </>
   )
 }
