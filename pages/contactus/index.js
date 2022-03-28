@@ -11,8 +11,16 @@ import { Box } from '@mui/material'
 import PropertyCardList from '../../components/Card/PropertyCardList'
 import ComponentTitle from '../../components/ui/ComponentTitle'
 import NoDataMessage from '../../components/ui/NoDataMessage'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
 
 const ContactUsPage = () => {
+  const [page, setPage] = React.useState(1)
+  const [pageCount, setPageCount] = React.useState(0)
+
+  const handleChange = (event, value) => {
+    setPage(value)
+  }
   const ctxContactedPropertiesList = useContactedPropertiesList()
 
   const [contactedPropertiesData, setContactedPropertiesData] = useState([])
@@ -36,17 +44,18 @@ const ContactUsPage = () => {
 
     if (listOfIds.length > 0) {
       axios
-        .post('/api/properties-from-id-list', {
+        .post(`/api/properties-from-id-list?page=${page}`, {
           listOfIds,
         })
         .then((result) => {
-          setContactedPropertiesData(result.data)
+          setContactedPropertiesData(result.data.items)
+          setPageCount(result.data.pagination.pageCountRoundUp)
           setLoading(false)
         })
     } else {
       setContactedPropertiesData([])
     }
-  }, [ctxContactedPropertiesList.contactPropertiesList])
+  }, [ctxContactedPropertiesList.contactPropertiesList, page])
 
   return (
     <>
@@ -70,7 +79,19 @@ const ContactUsPage = () => {
       ) : contactedPropertiesData.length === 0 ? (
         <NoDataMessage text={"You didn't show interest in any property yet"} />
       ) : (
-        <PropertyCardList data={contactedPropertiesData} />
+        <>
+          <PropertyCardList data={contactedPropertiesData} />
+          {pageCount > 1 && (
+            <Stack spacing={2} mx={'auto'} my={2}>
+              <Pagination
+                count={pageCount}
+                color='secondary'
+                page={page}
+                onChange={handleChange}
+              />
+            </Stack>
+          )}
+        </>
       )}
     </>
   )
