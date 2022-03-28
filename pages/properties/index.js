@@ -28,6 +28,7 @@ const PropertiesPage = ({ data }) => {
       {pageCount > 1 && (
         <Stack spacing={2} mx={'auto'} my={2}>
           <Pagination
+            sx={{ '&& .Mui-selected': { color: 'white' } }}
             count={pageCount}
             color='secondary'
             page={page}

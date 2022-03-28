@@ -74,6 +74,7 @@ const FavoritesPage = () => {
                 color='secondary'
                 page={page}
                 onChange={handleChange}
+                sx={{ '&& .Mui-selected': { color: 'white' } }}
               />
             </Stack>
           )}

@@ -88,6 +88,7 @@ const ContactUsPage = () => {
                 color='secondary'
                 page={page}
                 onChange={handleChange}
+                sx={{ '&& .Mui-selected': { color: 'white' } }}
               />
             </Stack>
           )}
