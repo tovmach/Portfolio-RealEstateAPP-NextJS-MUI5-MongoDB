@@ -94,7 +94,14 @@ const PropertySearchBar = ({
       setMin(+minFromQuery)
       setMaxList(minList.filter((price) => price.value > +minFromQuery))
     }
-    if (maxFromQuery && max === '' && maxList.length > 0) {
+    if (
+      maxFromQuery &&
+      max === '' &&
+      maxList.length > 0 &&
+      operationFromQuery === operation &&
+      min !== '' &&
+      +minFromQuery === min
+    ) {
       setMax(+maxFromQuery)
     }
   }, [
@@ -109,6 +116,7 @@ const PropertySearchBar = ({
     type,
     location,
     max,
+    min,
   ])
 
   return (
