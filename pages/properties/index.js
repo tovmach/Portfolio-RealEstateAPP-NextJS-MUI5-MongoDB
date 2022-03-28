@@ -3,12 +3,37 @@ import PropertySearchBar from '../../components/PropertySearchBar'
 import PropertyCardList from '../../components/Card/PropertyCardList'
 import mongoose from 'mongoose'
 import Property from '../../models/propertyModel'
+import Pagination from '@mui/material/Pagination'
+import Stack from '@mui/material/Stack'
+import { useState } from 'react'
 
 const PropertiesPage = ({ data }) => {
+  const ITEMS_PER_PAGE = 6
+  const count = data.length
+  const pageCount = Math.ceil(count / ITEMS_PER_PAGE)
+
+  const [page, setPage] = useState(1)
+  const [items, setItems] = useState(data.slice(0, ITEMS_PER_PAGE))
+
+  const handleChange = (event, value) => {
+    setPage(value)
+    const skip = (value - 1) * ITEMS_PER_PAGE
+    console.log(skip)
+    setItems(data.slice(skip, skip + ITEMS_PER_PAGE))
+  }
+
   return (
     <>
       <PropertySearchBar />
-      <PropertyCardList data={data} />
+      <PropertyCardList data={items} />
+      <Stack spacing={2} mx={'auto'} my={2}>
+        <Pagination
+          count={pageCount}
+          color='secondary'
+          page={page}
+          onChange={handleChange}
+        />
+      </Stack>
     </>
   )
 }
