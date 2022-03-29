@@ -9,7 +9,15 @@ import { useNotification } from './notification/NotificationBarContext'
 import { useContactData } from './contactButton/ContactButtonContext'
 import { useEffect } from 'react'
 
-const ContactForm = () => {
+const capitalizeFirstLetter = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1)
+}
+
+const numberWithCommas = (num) => {
+  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
+}
+
+const ContactForm = ({ data }) => {
   const ctxContactData = useContactData()
   const ctxNotification = useNotification()
 
@@ -94,6 +102,16 @@ const ContactForm = () => {
   }
 
   useEffect(() => {
+    if (data) {
+      console.log(data)
+      setMessage(
+        `I'm interested in the ${capitalizeFirstLetter(data.type)} for ${
+          data.operation === 'buy' ? 'sale' : 'rent'
+        } (ref: ${data._id}) located in ${capitalizeFirstLetter(
+          data.city
+        )} whit the price of ${numberWithCommas(data.price)}€`
+      )
+    }
     const contactData = ctxContactData.contactData
 
     if (Object.keys(contactData).length > 0) {

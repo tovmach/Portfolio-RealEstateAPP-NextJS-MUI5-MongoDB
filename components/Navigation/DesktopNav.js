@@ -16,10 +16,9 @@ import { useState } from 'react'
 import Badge from '@mui/material/Badge'
 import { useFavoritesPropertiesList } from '../likeButton/FavoritesPropertiesListContext'
 import { useContactedPropertiesList } from '../contactButton/ContactPropertyListContext'
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import HomeIcon from '@mui/icons-material/Home'
 
-const DesktopNav = () => {
+const DesktopNav = (props) => {
   const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
   const ctxContactedPropertiesList = useContactedPropertiesList()
 
