@@ -6,6 +6,8 @@ import Property from '../../models/propertyModel'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 import { useState } from 'react'
+import { Link } from 'react-scroll'
+import { Box } from '@mui/material'
 
 const PropertiesPage = ({ data }) => {
   const ITEMS_PER_PAGE = 6
@@ -24,16 +26,25 @@ const PropertiesPage = ({ data }) => {
   return (
     <>
       <PropertySearchBar />
+      <Box id='propertyCardListStart' />
       <PropertyCardList data={items} />
+
       {pageCount > 1 && (
         <Stack spacing={2} mx={'auto'} my={2}>
-          <Pagination
-            sx={{ '&& .Mui-selected': { color: 'white' } }}
-            count={pageCount}
-            color='secondary'
-            page={page}
-            onChange={handleChange}
-          />
+          <Link
+            to='propertyCardListStart'
+            smooth={true}
+            duration={1000}
+            delay={200}
+          >
+            <Pagination
+              sx={{ '&& .Mui-selected': { color: 'white' } }}
+              count={pageCount}
+              color='secondary'
+              page={page}
+              onChange={handleChange}
+            />
+          </Link>
         </Stack>
       )}
     </>

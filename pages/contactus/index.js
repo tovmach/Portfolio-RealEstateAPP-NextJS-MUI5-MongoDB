@@ -13,6 +13,7 @@ import ComponentTitle from '../../components/ui/ComponentTitle'
 import NoDataMessage from '../../components/ui/NoDataMessage'
 import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
+import { Link } from 'react-scroll'
 
 const ContactUsPage = () => {
   const [page, setPage] = React.useState(1)
@@ -80,16 +81,25 @@ const ContactUsPage = () => {
         <NoDataMessage text={"You didn't show interest in any property yet"} />
       ) : (
         <>
+          <Box id='propertyCardListStart' />
           <PropertyCardList data={contactedPropertiesData} />
           {pageCount > 1 && (
             <Stack spacing={2} mx={'auto'} my={2}>
-              <Pagination
-                count={pageCount}
-                color='secondary'
-                page={page}
-                onChange={handleChange}
-                sx={{ '&& .Mui-selected': { color: 'white' } }}
-              />
+              <Link
+                to='propertyCardListStart'
+                smooth={true}
+                duration={1000}
+                offset={-5}
+                delay={200}
+              >
+                <Pagination
+                  count={pageCount}
+                  color='secondary'
+                  page={page}
+                  onChange={handleChange}
+                  sx={{ '&& .Mui-selected': { color: 'white' } }}
+                />
+              </Link>
             </Stack>
           )}
         </>

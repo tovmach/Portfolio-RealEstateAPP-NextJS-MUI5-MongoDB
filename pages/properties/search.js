@@ -11,6 +11,7 @@ import Pagination from '@mui/material/Pagination'
 import Stack from '@mui/material/Stack'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { Link } from 'react-scroll'
 
 const SearchPropertiesPage = ({ data, query }) => {
   const ITEMS_PER_PAGE = 6
@@ -42,16 +43,24 @@ const SearchPropertiesPage = ({ data, query }) => {
       />
       {data.length > 0 && (
         <>
+          <Box id='propertyCardListStart' />
           <PropertyCardList data={items} />
           {pageCount > 1 && (
             <Stack spacing={2} mx={'auto'} my={2}>
-              <Pagination
-                sx={{ '&& .Mui-selected': { color: 'white' } }}
-                count={pageCount}
-                color='secondary'
-                page={page}
-                onChange={handleChange}
-              />
+              <Link
+                to='propertyCardListStart'
+                smooth={true}
+                duration={1000}
+                delay={200}
+              >
+                <Pagination
+                  sx={{ '&& .Mui-selected': { color: 'white' } }}
+                  count={pageCount}
+                  color='secondary'
+                  page={page}
+                  onChange={handleChange}
+                />
+              </Link>
             </Stack>
           )}
         </>
