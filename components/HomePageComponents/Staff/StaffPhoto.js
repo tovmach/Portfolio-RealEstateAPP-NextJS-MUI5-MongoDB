@@ -6,7 +6,7 @@ const imgHeight = (height) => {
   return height + height / 2.5
 }
 
-const PhotoStaff = ({ px, img }) => {
+const StaffPhoto = ({ px, img }) => {
   const sizeBoxXs = 345
   const sizeBox = 450
 
@@ -50,4 +50,4 @@ const PhotoStaff = ({ px, img }) => {
   )
 }
 
-export default PhotoStaff
+export default StaffPhoto

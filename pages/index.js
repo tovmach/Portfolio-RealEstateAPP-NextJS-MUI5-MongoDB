@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import Property from '../models/propertyModel'
 import LatestListings from '../components/HomePageComponents/LatestListings'
 import Services from '../components/HomePageComponents/Services'
-import Staff from '../components/HomePageComponents/Staff'
+import Staff from '../components/HomePageComponents/Staff/Staff'
 
 const Home = ({ data }) => {
   return (

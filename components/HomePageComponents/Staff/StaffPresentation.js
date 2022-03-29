@@ -14,8 +14,11 @@ const BoxWhitIcon = ({ badgeColor, mainText, descriptionText, icon }) => {
   return (
     <Paper
       sx={{
-        width: { xs: 345, sm: 260, md: 195, lg: 318 }, //274
-        height: { md: 214, lg: 'auto' },
+        // width: { xs: 345, sm: 260, md: 195, lg: 318 },
+        minWidth: 195,
+        maxWidth: 400,
+        // height: { md: 214, lg: 'auto' },
+        height: '100%',
         bgcolor: 'white',
         borderRadius: 3,
         p: 2,
@@ -103,20 +106,21 @@ const StaffPresentation = () => {
             container
             spacing={{ xs: 2, lg: 2 }}
             justifyContent={{ xs: 'center', md: 'flex-start' }}
+            // alignItems={'stretch'}
           >
-            <Grid item>
+            <Grid item xs>
               <BoxWhitIcon
                 badgeColor={'#D18CE0'}
                 // badgeColor={'#FF6584'}
                 mainText={'Experience'}
                 descriptionText={
-                  '20 years in the market and hundreds of happy clients.'
+                  '20+ years in the market and hundreds of happy clients.'
                   // 'More than 20 years in the market and hundreds of happy clients.'
                 }
                 icon={<PriorityHighIcon sx={{ color: '#ffffff' }} />}
               />
             </Grid>
-            <Grid item>
+            <Grid item xs>
               <BoxWhitIcon
                 badgeColor={'#FF6584'}
                 //blue badgeColor={'#7AA7FC'}
@@ -134,7 +138,7 @@ const StaffPresentation = () => {
             spacing={2}
             justifyContent={{ xs: 'center', md: 'flex-start' }}
           >
-            <Grid item>
+            <Grid item xs>
               <BoxWhitIcon
                 badgeColor={'#7AA7FC'}
                 // badgeColor={'#A2D5AB'}
@@ -145,12 +149,14 @@ const StaffPresentation = () => {
                 icon={<DiamondIcon sx={{ color: '#ffffff' }} />}
               />
             </Grid>
-            <Grid item>
+            <Grid item xs>
               <BoxWhitIcon
                 badgeColor={'#A2D5AB'}
                 // badgeColor={'#D18CE0'}
                 mainText={'Negotiation'}
-                descriptionText={'We always ensure to get you the best price.'}
+                descriptionText={
+                  'Our priority is your interests and to get you the best price.'
+                }
                 icon={<AttachMoneyIcon sx={{ color: '#ffffff' }} />}
               />
             </Grid>
