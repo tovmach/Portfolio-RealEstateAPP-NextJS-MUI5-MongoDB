@@ -83,7 +83,7 @@ const PropertyContactForm = ({ item }) => {
             }}
             autoFocus
           >
-            Submit
+            Send New
           </Button>
         </DialogActions>
       </Dialog>
