@@ -12,14 +12,6 @@ import PropertyDescription from '../../components/PropertyDetailPageComponents/P
 import PropertyFeatures from '../../components/PropertyDetailPageComponents/PropertyFeatures'
 import PropertyContactForm from '../../components/PropertyDetailPageComponents/PropertyContactForm'
 
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
-
-const numberWithCommas = (num) => {
-  return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
-}
-
 const PropertyDetailPage = ({ data }) => {
   const item = data[0]
   return (
@@ -56,8 +48,8 @@ const PropertyDetailPage = ({ data }) => {
 
 export default PropertyDetailPage
 
-export const getServerSideProps = async (ctx) => {
-  const query = ctx.query.id
+export const getStaticProps = async (ctx) => {
+  const query = ctx.params.id
   // params
   const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.s3o9t.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
@@ -79,5 +71,28 @@ export const getServerSideProps = async (ctx) => {
     props: {
       data,
     },
+  }
+}
+
+export async function getStaticPaths() {
+  const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.s3o9t.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
+
+  await mongoose.connect(
+    connectionString,
+    () => {
+      console.log('connected')
+    },
+    (e) => console.error(e)
+  )
+
+  let data = await Property.find({}, { _id: 1 }).lean()
+
+  data = JSON.parse(JSON.stringify(data))
+
+  const params = data.map((item) => ({ params: { id: item._id } }))
+
+  return {
+    paths: params,
+    fallback: 'blocking',
   }
 }

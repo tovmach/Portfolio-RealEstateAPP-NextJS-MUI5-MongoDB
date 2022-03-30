@@ -113,7 +113,6 @@ const ContactForm = ({ data, setContactButtonActiv }) => {
 
   useEffect(() => {
     if (data) {
-      console.log(data)
       setMessage(
         `I'm interested in the ${capitalizeFirstLetter(data.type)} for ${
           data.operation === 'buy' ? 'sale' : 'rent'

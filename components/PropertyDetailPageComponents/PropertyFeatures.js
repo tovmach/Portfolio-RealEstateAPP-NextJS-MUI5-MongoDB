@@ -11,6 +11,7 @@ import CropFreeIcon from '@mui/icons-material/CropFree'
 import HotTubIcon from '@mui/icons-material/HotTub'
 import HouseIcon from '@mui/icons-material/House'
 import BathroomIcon from '../svg/Card/BathroomIcon'
+import numberWithCommas from '../../utils/numberWithCommas'
 
 const PropertyFeatures = ({ item }) => {
   const featuresList = [
@@ -72,7 +73,7 @@ const PropertyFeatures = ({ item }) => {
     },
     {
       type: 'Price',
-      value: `${item.price}`,
+      value: `${numberWithCommas(item.price)}`,
       icon: (
         <EuroIcon
           sx={{
