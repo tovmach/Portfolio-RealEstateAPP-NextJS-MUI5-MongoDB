@@ -45,7 +45,7 @@ const PropertyDetailPage = ({ data }) => {
           id={item._id}
         />
         <PropertyFeatures item={item} />
-        <PropertyDescription />
+        <PropertyDescription item={item} />
         <Box mt={4}>
           <PropertyContactForm item={item} />
         </Box>

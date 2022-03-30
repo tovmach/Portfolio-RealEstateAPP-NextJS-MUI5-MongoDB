@@ -17,6 +17,7 @@ const TitleAndLikeButton = ({ type, city, operation, id }) => {
       >
         <Grid item>
           <Typography
+            component={'h1'}
             sx={{
               fontSize: '2.5rem',
               color: 'primary.main',

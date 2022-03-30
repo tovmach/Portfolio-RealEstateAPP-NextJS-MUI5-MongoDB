@@ -90,7 +90,7 @@ const PropertyFeatures = ({ item }) => {
     <Container maxWidth='lg'>
       <Grid container spacing={0} mb={2} sx={{ maxWidth: 660, mx: 'auto' }}>
         {featuresList.map((feature) => (
-          <>
+          <div key={feature.type}>
             <Grid item container mt={2} alignItems={'flex-end'} xs>
               <Grid item mr={1}>
                 {feature.icon}
@@ -107,7 +107,7 @@ const PropertyFeatures = ({ item }) => {
                 </Typography>
               </Grid>
             </Grid>
-          </>
+          </div>
         ))}
       </Grid>
     </Container>
