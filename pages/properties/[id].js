@@ -9,6 +9,8 @@ import PhotosCarouselInfiniteLoop from '../../components/PropertyDetailPageCompo
 import ComponentTitle from '../../components/ui/ComponentTitle'
 import TitleAndLikeButton from '../../components/PropertyDetailPageComponents/TitleAndLikeButton'
 import PropertyDescription from '../../components/PropertyDetailPageComponents/PropertyDescription'
+import PropertyFeatures from '../../components/PropertyDetailPageComponents/PropertyFeatures'
+import PropertyContactForm from '../../components/PropertyDetailPageComponents/PropertyContactForm'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -42,9 +44,10 @@ const PropertyDetailPage = ({ data }) => {
           operation={item.operation}
           id={item._id}
         />
+        <PropertyFeatures />
         <PropertyDescription />
         <Box mt={4}>
-          <ContactForm data={item} />
+          <PropertyContactForm item={item} />
         </Box>
       </Box>
     </div>

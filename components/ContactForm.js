@@ -8,6 +8,7 @@ import axios from 'axios'
 import { useNotification } from './notification/NotificationBarContext'
 import { useContactData } from './contactButton/ContactButtonContext'
 import { useEffect } from 'react'
+import { useContactedPropertiesList } from './contactButton/ContactPropertyListContext'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -17,9 +18,10 @@ const numberWithCommas = (num) => {
   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
 }
 
-const ContactForm = ({ data }) => {
+const ContactForm = ({ data, setContactButtonActiv }) => {
   const ctxContactData = useContactData()
   const ctxNotification = useNotification()
+  const ctxContactedPropertiesList = useContactedPropertiesList()
 
   const [name, setName] = useState('')
   const [nameHelper, setNameHelper] = useState('')
@@ -94,6 +96,14 @@ const ContactForm = ({ data }) => {
         setLoading(false)
         ctxNotification.showNotification('Thanks for reaching out!', 'success')
         ctxContactData.addContactData(name, email, phone)
+        if (data) {
+          setContactButtonActiv(true)
+          if (
+            !ctxContactedPropertiesList.contactPropertiesList.includes(data._id)
+          ) {
+            ctxContactedPropertiesList.addPropertyToList(data._id)
+          }
+        }
       })
       .catch((err) => {
         setLoading(false)
@@ -200,7 +210,7 @@ const ContactForm = ({ data }) => {
             }
           >
             {loading ? (
-              <CircularProgress size={20} sx={{ color: 'secondary.main' }} />
+              <CircularProgress size={24} sx={{ color: 'secondary.main' }} />
             ) : (
               'Submit'
             )}
