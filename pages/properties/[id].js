@@ -6,6 +6,9 @@ import mongoose from 'mongoose'
 import Property from '../../models/propertyModel'
 import { Paper, Container } from '@mui/material'
 import PhotosCarouselInfiniteLoop from '../../components/PropertyDetailPageComponents/PhotosCarouselInfiniteLoop'
+import ComponentTitle from '../../components/ui/ComponentTitle'
+import TitleAndLikeButton from '../../components/PropertyDetailPageComponents/TitleAndLikeButton'
+import PropertyDescription from '../../components/PropertyDetailPageComponents/PropertyDescription'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -18,41 +21,33 @@ const numberWithCommas = (num) => {
 const PropertyDetailPage = ({ data }) => {
   const item = data[0]
   return (
-    <>
-      {/* <Box mt={2}>
+    <div>
+      <PhotosCarouselInfiniteLoop />
+      <Box
+        sx={{
+          bgcolor: 'white',
+          maxWidth: 1152,
+          borderRadius: '0 0 8px 8px',
+          mx: 'auto',
+          p: 1,
+        }}
+      >
+        {/* <Box mt={2}>
         <PhotosCarousel />
       </Box> */}
 
-      <Box mt={2}>
-        <PhotosCarouselInfiniteLoop />
+        <TitleAndLikeButton
+          type={item.type}
+          city={item.city}
+          operation={item.operation}
+          id={item._id}
+        />
+        <PropertyDescription />
+        <Box mt={4}>
+          <ContactForm data={item} />
+        </Box>
       </Box>
-
-      <Box mt={2}>
-        <Typography
-          sx={{ fontSize: '2.5rem', color: 'primary.main', fontWeight: 'bold' }}
-          textAlign={'center'}
-        >
-          {capitalizeFirstLetter(item.type)} in{' '}
-          {capitalizeFirstLetter(item.city)} for{' '}
-          {item.operation === 'buy' ? 'Sale' : 'Rent'}
-        </Typography>
-        <Typography
-          sx={{
-            fontSize: '1.5rem',
-            color: 'secondary.main',
-            fontWeight: 'bold',
-          }}
-          variant='body1'
-          color='initial'
-          textAlign={'center'}
-        >
-          {numberWithCommas(item.price)} €
-        </Typography>
-      </Box>
-      <Box mt={4}>
-        <ContactForm data={item} />
-      </Box>
-    </>
+    </div>
   )
 }
 

@@ -11,6 +11,7 @@ import 'swiper/css/navigation'
 import { Pagination, Navigation } from 'swiper'
 import { Box } from '@mui/system'
 import Image from 'next/image'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const imgList = [
   '/demo-house/demo-house-0.jpg',
@@ -23,6 +24,7 @@ const imgList = [
 ]
 
 export default function PhotosCarouselInfiniteLoop() {
+  const matchesLG = useMediaQuery('(min-width:1152px)')
   return (
     <>
       <Box
@@ -32,7 +34,7 @@ export default function PhotosCarouselInfiniteLoop() {
           '.swiper': {
             width: '100%',
             height: 500,
-            borderRadius: 2,
+            borderRadius: matchesLG ? '8px 8px 0 0' : 0,
           },
           '.swiper-button-next': {
             color: 'white',
