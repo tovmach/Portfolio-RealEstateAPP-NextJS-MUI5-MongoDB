@@ -27,6 +27,10 @@ import Image from 'next/image'
 import LikeButton from '../likeButton/LikeButton'
 import ContactButton from '../contactButton/ContactButton'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { amber } from '@mui/material/colors'
+import EditIcon from '@mui/icons-material/Edit'
 
 const capitalizeFirstLetter = (string) => {
   return string.charAt(0).toUpperCase() + string.slice(1)
@@ -46,10 +50,36 @@ const PropertyCard = ({
   type,
   city,
 }) => {
+  const [editMode, setEditMode] = useState(false)
+
+  useEffect(() => {
+    setEditMode(window.location.pathname.split('/')[1] === 'admin')
+  }, [])
+
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 345, position: 'relative' }}>
+      {editMode && (
+        <IconButton
+          component={Link}
+          href={`/admin/${_id}`}
+          color='primary'
+          aria-label='upload picture'
+          sx={{
+            position: 'absolute',
+            zIndex: 2,
+            right: 10,
+            top: 10,
+            bgcolor: amber[600],
+            '&:hover': {
+              bgcolor: amber[500],
+            },
+          }}
+        >
+          <EditIcon sx={{ color: 'white' }} />
+        </IconButton>
+      )}
       <CardMedia
-        sx={{ height: 250, width: 345 }}
+        sx={{ height: 230, width: 345 }}
         component={Link}
         href={`/properties/${_id}`}
       >
