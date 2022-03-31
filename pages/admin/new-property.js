@@ -19,8 +19,8 @@ const NewProperty = () => {
   const [type, setType] = useState('')
   const [price, setPrice] = useState('')
   const [city, setCity] = useState('')
-  const [province, setProvince] = useState('')
   const [livingArea, setLivingArea] = useState('')
+  const [plot, setPlot] = useState('')
   const [bedroom, setBedroom] = useState('')
   const [bathroom, setBathroom] = useState('')
   const [description, setDescription] = useState('')
@@ -40,17 +40,30 @@ const NewProperty = () => {
   ]
 
   const onSubmitHandler = () => {
-    axios.post('/api/add-property', {
-      operation,
-      type,
-      price,
-      city,
-      province,
-      livingArea,
-      bedroom,
-      bathroom,
-      img: '/villa.jpg',
-    })
+    axios
+      .post('/api/add-property', {
+        operation,
+        type,
+        price,
+        city,
+        livingArea,
+        plot,
+        bedroom,
+        bathroom,
+        description,
+        img: '/villa.jpg',
+      })
+      .then((response) => {
+        setOperation('')
+        setType('')
+        setPrice('')
+        setCity('')
+        setLivingArea('')
+        setPlot('')
+        setBedroom('')
+        setBathroom('')
+        setDescription('')
+      })
   }
 
   return (
@@ -150,9 +163,9 @@ const NewProperty = () => {
               autoComplete='off'
               label='Plot m2'
               variant='outlined'
-              value={livingArea}
+              value={plot}
               onChange={(e) => {
-                setLivingArea(e.target.value)
+                setPlot(e.target.value)
               }}
             />
           </Grid>
