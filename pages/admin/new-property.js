@@ -6,6 +6,13 @@ import Typography from '@mui/material/Typography'
 import Grid from '@mui/material/Grid'
 import { TextField, Button } from '@mui/material'
 import SelectMenu from '../../components/ui/SelectMenu'
+import InputLabel from '@mui/material/InputLabel'
+import MenuItem from '@mui/material/MenuItem'
+import FormControl from '@mui/material/FormControl'
+import Select, { SelectChangeEvent } from '@mui/material/Select'
+import Box from '@mui/material/Box'
+import { amber } from '@mui/material/colors'
+import SendIcon from '@mui/icons-material/Send'
 
 const NewProperty = () => {
   const [operation, setOperation] = useState('')
@@ -16,10 +23,20 @@ const NewProperty = () => {
   const [livingArea, setLivingArea] = useState('')
   const [bedroom, setBedroom] = useState('')
   const [bathroom, setBathroom] = useState('')
+  const [description, setDescription] = useState('')
 
   const operationList = [
     { text: 'Sell', value: 'buy' },
     { text: 'Rent', value: 'rent' },
+  ]
+
+  const typeList = [
+    { text: 'Villa', value: 'villa' },
+    { text: 'Apartment', value: 'apartment' },
+    { text: 'Townhouse', value: 'townhouse' },
+    { text: 'Commercial', value: 'commercial' },
+    { text: 'Penthouse', value: 'penthouse' },
+    { text: 'Plot', value: 'plot' },
   ]
 
   const onSubmitHandler = () => {
@@ -38,38 +55,63 @@ const NewProperty = () => {
 
   return (
     <>
-      <Typography variant='h3' color='primary' textAlign={'center'}>
+      <Typography
+        component={'h1'}
+        color='primary'
+        textAlign={'center'}
+        sx={{ fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' } }}
+        mb={1}
+      >
         Add new Property
       </Typography>
       <Container maxWidth='sm'>
-        <Grid
-          container
-          spacing={2}
-          mt={2}
-          direction={'column'}
-          alignItems={'center'}
-        >
-          <Grid item>
-            <SelectMenu
-              label='Operation'
-              dataToSelect={operationList}
-              handleChange={(event) => setOperation(event.target.value)}
-              value={operation}
-            />
+        <Grid container spacing={2} alignItems={'center'}>
+          <Grid item xs={12} sm={6}>
+            <Box sx={{ minWidth: 240 }}>
+              <FormControl fullWidth>
+                <InputLabel>Operation</InputLabel>
+                <Select
+                  value={operation}
+                  label='Operation'
+                  onChange={(e) => {
+                    setOperation(e.target.value)
+                  }}
+                >
+                  {operationList.map((item) => (
+                    <MenuItem key={item.value} value={item.value}>
+                      {item.text}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
           </Grid>
-          <Grid item>
-            <TextField
-              label='Type'
-              variant='outlined'
-              value={type}
-              onChange={(e) => {
-                setType(e.target.value)
-              }}
-            />
+          <Grid item xs={12} sm={6}>
+            <Box sx={{ minWidth: 240 }}>
+              <FormControl fullWidth>
+                <InputLabel>Type</InputLabel>
+                <Select
+                  value={type}
+                  label='Type'
+                  onChange={(e) => {
+                    setType(e.target.value)
+                  }}
+                >
+                  {typeList.map((item) => (
+                    <MenuItem key={item.value} value={item.value}>
+                      {item.text}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
           </Grid>
-          <Grid item>
+
+          <Grid item xs={12} sm={6}>
             <TextField
-              label='Price'
+              fullWidth
+              autoComplete='off'
+              label='Price €'
               variant='outlined'
               value={price}
               onChange={(e) => {
@@ -77,18 +119,11 @@ const NewProperty = () => {
               }}
             />
           </Grid>
-          <Grid item>
+
+          <Grid item xs={12} sm={6}>
             <TextField
-              label='Province'
-              variant='outlined'
-              value={province}
-              onChange={(e) => {
-                setProvince(e.target.value)
-              }}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
+              fullWidth
+              autoComplete='off'
               label='City'
               variant='outlined'
               value={city}
@@ -97,9 +132,11 @@ const NewProperty = () => {
               }}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} sm={6}>
             <TextField
-              label='Living Area'
+              fullWidth
+              autoComplete='off'
+              label='Living Area m2'
               variant='outlined'
               value={livingArea}
               onChange={(e) => {
@@ -107,8 +144,22 @@ const NewProperty = () => {
               }}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} sm={6}>
             <TextField
+              fullWidth
+              autoComplete='off'
+              label='Plot m2'
+              variant='outlined'
+              value={livingArea}
+              onChange={(e) => {
+                setLivingArea(e.target.value)
+              }}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <TextField
+              fullWidth
+              autoComplete='off'
               label='Bedroom'
               variant='outlined'
               value={bedroom}
@@ -117,8 +168,10 @@ const NewProperty = () => {
               }}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12} sm={6}>
             <TextField
+              fullWidth
+              autoComplete='off'
               label='Bathroom'
               variant='outlined'
               value={bathroom}
@@ -127,11 +180,30 @@ const NewProperty = () => {
               }}
             />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
+            <TextField
+              fullWidth
+              autoComplete='off'
+              label='Description'
+              variant='outlined'
+              onChange={(e) => setDescription(e.target.value)}
+              multiline
+              rows={6}
+              value={description}
+            />
+          </Grid>
+          <Grid item xs>
             <Button
+              fullWidth
               variant='contained'
-              color='primary'
               onClick={onSubmitHandler}
+              sx={{
+                bgcolor: amber[600],
+                '&:hover': {
+                  bgcolor: amber[500],
+                },
+              }}
+              endIcon={<SendIcon />}
             >
               Submit
             </Button>
