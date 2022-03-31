@@ -89,26 +89,40 @@ const PropertyFeatures = ({ item }) => {
 
   return (
     <Container maxWidth='lg'>
-      <Grid container spacing={0} mb={2} sx={{ maxWidth: 660, mx: 'auto' }}>
+      <Grid
+        container
+        spacing={0}
+        mb={2}
+        sx={{ mx: 'auto' }}
+        justifyContent={'center'}
+      >
         {featuresList.map((feature) => (
-          <div key={feature.type}>
-            <Grid item container mt={2} alignItems={'flex-end'} xs>
+          <Grid item key={feature.type} mx={0.5}>
+            <Grid item container alignItems={'flex-end'}>
               <Grid item mr={1}>
                 {feature.icon}
               </Grid>
               <Grid item>
-                <Typography color='text.secondary' sx={{ fontSize: '1.25rem' }}>
+                <Typography
+                  color='text.secondary'
+                  sx={{
+                    fontSize: { xs: '1rem', sm: '1rem', md: '1.25rem' },
+                  }}
+                >
                   {feature.type}
                 </Typography>
                 <Typography
                   color={blueGrey[800]}
-                  sx={{ fontSize: '1.25rem', fontWeight: 'bold' }}
+                  sx={{
+                    fontSize: { xs: '1rem', sm: '1rem', md: '1.25rem' },
+                    fontWeight: 'bold',
+                  }}
                 >
                   {feature.value}
                 </Typography>
               </Grid>
             </Grid>
-          </div>
+          </Grid>
         ))}
       </Grid>
     </Container>

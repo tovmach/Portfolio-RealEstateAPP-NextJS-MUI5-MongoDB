@@ -15,7 +15,7 @@ import PropertyContactForm from '../../components/PropertyDetailPageComponents/P
 const PropertyDetailPage = ({ data }) => {
   const item = data[0]
   return (
-    <div>
+    <Box mt={-1}>
       <PhotosCarouselInfiniteLoop />
       <Box
         sx={{
@@ -23,7 +23,6 @@ const PropertyDetailPage = ({ data }) => {
           maxWidth: 1152,
           borderRadius: '0 0 8px 8px',
           mx: 'auto',
-          p: 1,
         }}
       >
         {/* <Box mt={2}>
@@ -38,11 +37,11 @@ const PropertyDetailPage = ({ data }) => {
         />
         <PropertyFeatures item={item} />
         <PropertyDescription item={item} />
-        <Box mt={4}>
+        <Box mt={4} pb={1}>
           <PropertyContactForm item={item} />
         </Box>
       </Box>
-    </div>
+    </Box>
   )
 }
 

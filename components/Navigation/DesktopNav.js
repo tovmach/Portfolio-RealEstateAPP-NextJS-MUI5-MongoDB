@@ -17,8 +17,11 @@ import Badge from '@mui/material/Badge'
 import { useFavoritesPropertiesList } from '../likeButton/FavoritesPropertiesListContext'
 import { useContactedPropertiesList } from '../contactButton/ContactPropertyListContext'
 import HomeIcon from '@mui/icons-material/Home'
+import useMediaQuery from '@mui/material/useMediaQuery'
 
 const DesktopNav = (props) => {
+  const matchesMD = useMediaQuery('(max-width:600px)')
+
   const ctxFavoritesPropertiesList = useFavoritesPropertiesList()
   const ctxContactedPropertiesList = useContactedPropertiesList()
 
@@ -40,7 +43,7 @@ const DesktopNav = (props) => {
         position='static'
         sx={{ background: 'transparent', boxShadow: 'none' }}
       >
-        <Container maxWidth='lg'>
+        <Container maxWidth='lg' disableGutters={matchesMD}>
           <Toolbar disableGutters>
             <Box
               component={Link}
