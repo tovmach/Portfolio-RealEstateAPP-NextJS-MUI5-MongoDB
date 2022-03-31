@@ -90,7 +90,7 @@ const ContactUsPage = () => {
                 smooth={true}
                 duration={1000}
                 offset={-5}
-                delay={200}
+                delay={250}
               >
                 <Pagination
                   count={pageCount}
