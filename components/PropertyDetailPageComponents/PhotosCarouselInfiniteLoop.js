@@ -30,10 +30,11 @@ export default function PhotosCarouselInfiniteLoop() {
       <Box
         sx={{
           maxWidth: 1152,
+
           mx: 'auto',
           '.swiper': {
             width: '100%',
-            height: 500,
+            height: { xs: 230, sm: 400, md: 600 },
             borderRadius: matchesLG ? '8px 8px 0 0' : 0,
           },
           '.swiper-button-next': {
@@ -60,12 +61,13 @@ export default function PhotosCarouselInfiniteLoop() {
         >
           {imgList.map((img) => (
             <SwiperSlide key={img}>
-              <Box sx={{ width: '100%', height: '100%' }}>
+              <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
                 <Image
                   src={img}
                   layout='fill'
                   objectFit='cover'
                   alt={` photo`}
+                  priority
                 />
               </Box>
             </SwiperSlide>
