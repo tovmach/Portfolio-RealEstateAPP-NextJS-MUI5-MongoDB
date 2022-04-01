@@ -31,7 +31,7 @@ const PropertyFeatures = ({ item }) => {
     },
     {
       type: 'Plot',
-      value: `${item.livingArea} m2`,
+      value: `${item.plot} m2`,
       icon: (
         <CropFreeIcon
           sx={{
@@ -96,34 +96,38 @@ const PropertyFeatures = ({ item }) => {
         sx={{ mx: 'auto' }}
         justifyContent={'center'}
       >
-        {featuresList.map((feature) => (
-          <Grid item key={feature.type} mx={0.5}>
-            <Grid item container alignItems={'flex-end'}>
-              <Grid item mr={1}>
-                {feature.icon}
-              </Grid>
-              <Grid item>
-                <Typography
-                  color='text.secondary'
-                  sx={{
-                    fontSize: { xs: '1rem', sm: '1rem', md: '1.25rem' },
-                  }}
-                >
-                  {feature.type}
-                </Typography>
-                <Typography
-                  color={blueGrey[800]}
-                  sx={{
-                    fontSize: { xs: '1rem', sm: '1rem', md: '1.25rem' },
-                    fontWeight: 'bold',
-                  }}
-                >
-                  {feature.value}
-                </Typography>
+        {featuresList.map((feature) =>
+          feature.type === 'Plot' && item.plot === null ? (
+            <></>
+          ) : (
+            <Grid item key={feature.type} mx={0.5}>
+              <Grid item container alignItems={'flex-end'}>
+                <Grid item mr={1}>
+                  {feature.icon}
+                </Grid>
+                <Grid item>
+                  <Typography
+                    color='text.secondary'
+                    sx={{
+                      fontSize: { xs: '1rem', sm: '1rem', md: '1.25rem' },
+                    }}
+                  >
+                    {feature.type}
+                  </Typography>
+                  <Typography
+                    color={blueGrey[800]}
+                    sx={{
+                      fontSize: { xs: '1rem', sm: '1rem', md: '1.25rem' },
+                      fontWeight: 'bold',
+                    }}
+                  >
+                    {feature.value}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-        ))}
+          )
+        )}
       </Grid>
     </Container>
   )
