@@ -1,12 +1,8 @@
 import React from 'react'
-import PhotosCarousel from '../../components/PropertyDetailPageComponents/PhotosCarousel'
-import { Box, Tooltip, Typography } from '@mui/material'
-import ContactForm from '../../components/ContactForm'
+import { Box } from '@mui/material'
 import mongoose from 'mongoose'
 import Property from '../../models/propertyModel'
-import { Paper, Container } from '@mui/material'
 import PhotosCarouselInfiniteLoop from '../../components/PropertyDetailPageComponents/PhotosCarouselInfiniteLoop'
-import ComponentTitle from '../../components/ui/ComponentTitle'
 import TitleAndLikeButton from '../../components/PropertyDetailPageComponents/TitleAndLikeButton'
 import PropertyDescription from '../../components/PropertyDetailPageComponents/PropertyDescription'
 import PropertyFeatures from '../../components/PropertyDetailPageComponents/PropertyFeatures'
@@ -25,10 +21,6 @@ const PropertyDetailPage = ({ data }) => {
           mx: 'auto',
         }}
       >
-        {/* <Box mt={2}>
-        <PhotosCarousel />
-      </Box> */}
-
         <TitleAndLikeButton
           type={item.type}
           city={item.city}

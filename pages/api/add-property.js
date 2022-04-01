@@ -5,8 +5,18 @@ const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${proces
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { type, price, city, province, livingArea, bedroom, bathroom, img } =
-      req.body
+    const {
+      operation,
+      type,
+      price,
+      city,
+      livingArea,
+      plot,
+      bedroom,
+      bathroom,
+      description,
+      img,
+    } = req.body
 
     await mongoose.connect(
       connectionString,
@@ -18,18 +28,21 @@ export default async function handler(req, res) {
 
     try {
       var property = new Property({
+        operation,
         type,
         price,
         city,
-        province,
         livingArea,
+        plot,
         bedroom,
         bathroom,
+        description,
         img,
       })
       var propertyCreated = await property.save()
       return res.status(200).send(propertyCreated)
     } catch (error) {
+      console.log(error)
       return res.status(500).send(error.message)
     }
   } else {

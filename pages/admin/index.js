@@ -94,11 +94,7 @@ export const getServerSideProps = async () => {
     (e) => console.error(e)
   )
 
-  let data = await Property.find({
-    operation: 'buy',
-  })
-    .lean()
-    .sort({ $natural: -1 })
+  let data = await Property.find().lean().sort({ $natural: -1 })
 
   data = JSON.parse(JSON.stringify(data))
 

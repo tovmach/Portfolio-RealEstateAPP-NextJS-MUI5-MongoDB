@@ -13,6 +13,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Box from '@mui/material/Box'
 import { amber } from '@mui/material/colors'
 import SendIcon from '@mui/icons-material/Send'
+import { useRouter } from 'next/router'
 
 const NewProperty = () => {
   const [operation, setOperation] = useState('')
@@ -39,6 +40,8 @@ const NewProperty = () => {
     { text: 'Plot', value: 'plot' },
   ]
 
+  const router = useRouter()
+
   const onSubmitHandler = () => {
     axios
       .post('/api/add-property', {
@@ -63,6 +66,7 @@ const NewProperty = () => {
         setBedroom('')
         setBathroom('')
         setDescription('')
+        router.push('/admin')
       })
   }
 
