@@ -9,11 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudinary/react": "^1.2.2",
+    "@cloudinary/url-gen": "^1.7.0",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.5.0",
     "@mui/material": "^5.5.0",
     "axios": "^0.26.1",
+    "cloudinary": "^1.29.0",
     "googleapis": "^97.0.0",
     "mongoose": "^6.2.6",
     "next": "12.1.0",
