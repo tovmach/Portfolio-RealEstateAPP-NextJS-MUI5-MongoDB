@@ -9,8 +9,10 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import axios from 'axios'
+import CloudinaryMediaLibraryButton from '../../components/adminPageComponents/CloudinaryMediaLibraryButton'
+import { Box } from '@mui/material'
 
-const PropertyEditPage = ({ data }) => {
+const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
   const router = useRouter()
 
   const [operation, setOperation] = useState('')
@@ -105,6 +107,14 @@ const PropertyEditPage = ({ data }) => {
         setDescription={setDescription}
         onSubmitHandler={onSubmitHandler}
       />
+
+      <Box sx={{ mb: 2 }}></Box>
+
+      <CloudinaryMediaLibraryButton
+        id={id}
+        cloudName={cloudName}
+        apiKey={apiKey}
+      />
       <Container maxWidth='sm'>
         <Grid container alignItems={'center'} mt={2}>
           <Grid item xs>
@@ -120,6 +130,8 @@ export default PropertyEditPage
 
 export const getServerSideProps = async (ctx) => {
   const id = ctx.params.id
+  const cloudName = process.env.CLOUDINARY_CLOUD_NAME
+  const apiKey = process.env.CLOUDINARY_API_KEY
 
   const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.s3o9t.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
@@ -138,6 +150,9 @@ export const getServerSideProps = async (ctx) => {
   return {
     props: {
       data,
+      id,
+      cloudName,
+      apiKey,
     },
   }
 }

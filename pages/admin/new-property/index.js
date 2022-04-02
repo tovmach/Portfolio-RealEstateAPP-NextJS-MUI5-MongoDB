@@ -1,20 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
-import Container from '@mui/material/Container'
 import Typography from '@mui/material/Typography'
-import Grid from '@mui/material/Grid'
-import { TextField, Button } from '@mui/material'
-import SelectMenu from '../../components/ui/SelectMenu'
-import InputLabel from '@mui/material/InputLabel'
-import MenuItem from '@mui/material/MenuItem'
-import FormControl from '@mui/material/FormControl'
-import Select, { SelectChangeEvent } from '@mui/material/Select'
-import Box from '@mui/material/Box'
-import { amber } from '@mui/material/colors'
-import SendIcon from '@mui/icons-material/Send'
 import { useRouter } from 'next/router'
-import PropertyForm from '../../components/adminPageComponents/PropertyForm'
+import PropertyForm from '../../../components/adminPageComponents/PropertyForm'
 
 const NewProperty = () => {
   const [operation, setOperation] = useState('')
@@ -44,6 +33,7 @@ const NewProperty = () => {
         img: '/villa.jpg',
       })
       .then((response) => {
+        console.log(response.data._id)
         setOperation('')
         setType('')
         setPrice('')
@@ -53,7 +43,15 @@ const NewProperty = () => {
         setBedroom('')
         setBathroom('')
         setDescription('')
-        router.push('/admin')
+
+        axios
+          .get(`/api/create-folder-cloudinary?id=${response.data._id}`)
+          .then((res) => {
+            console.log('creaded folder')
+            router.push(`/admin/new-property/${response.data._id}`)
+            console.log(res)
+          })
+          .catch((err) => console.log(err))
       })
   }
 
