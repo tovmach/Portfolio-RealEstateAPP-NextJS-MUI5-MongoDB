@@ -11,6 +11,9 @@ import { useEffect } from 'react'
 import axios from 'axios'
 import CloudinaryMediaLibraryButton from '../../components/adminPageComponents/CloudinaryMediaLibraryButton'
 import { Box } from '@mui/material'
+import Link from '../../components/Link'
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
+import { Button } from '@mui/material'
 
 const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
   const router = useRouter()
@@ -80,12 +83,24 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
         setBedroom('')
         setBathroom('')
         setDescription('')
-        router.push('/admin')
+        // router.push('/admin')
       })
   }
 
   return (
     <>
+      <Container maxWidth='sm'>
+        <Button
+          sx={{ mb: 2 }}
+          variant='contained'
+          color='primary'
+          component={Link}
+          href={'/admin'}
+          startIcon={<ArrowBackIosIcon />}
+        >
+          Back
+        </Button>
+      </Container>
       <PropertyForm
         operation={operation}
         setOperation={setOperation}

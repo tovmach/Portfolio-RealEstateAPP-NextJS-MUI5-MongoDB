@@ -186,9 +186,9 @@ const PropertyForm = ({
               variant='contained'
               onClick={onSubmitHandler}
               sx={{
-                bgcolor: amber[600],
+                bgcolor: amber[700],
                 '&:hover': {
-                  bgcolor: amber[500],
+                  bgcolor: amber[600],
                 },
               }}
               endIcon={<SendIcon />}

@@ -6,14 +6,15 @@ import { Box } from '@mui/system'
 import { useState } from 'react'
 import { Container, Button } from '@mui/material'
 import CameraAltIcon from '@mui/icons-material/CameraAlt'
+import { indigo } from '@mui/material/colors'
 
 const CloudinaryMediaLibraryButton = ({ id, cloudName, apiKey }) => {
-  const cloudinary = useRef()
+  const [cloudinaryState, setCloudinaryState] = useState()
 
   function showWidget() {
     let selectedImage
 
-    const ml = cloudinary.current.createMediaLibrary(
+    const ml = cloudinaryState.createMediaLibrary(
       {
         cloud_name: cloudName,
         api_key: apiKey,
@@ -37,8 +38,14 @@ const CloudinaryMediaLibraryButton = ({ id, cloudName, apiKey }) => {
   }
 
   function handleOnLoad() {
-    cloudinary.current = window.cloudinary
+    const cloud = window.cloudinary
+    setCloudinaryState(cloud)
   }
+
+  useEffect(() => {
+    const cloud = window.cloudinary
+    setCloudinaryState(cloud)
+  }, [])
 
   return (
     <>
@@ -51,7 +58,12 @@ const CloudinaryMediaLibraryButton = ({ id, cloudName, apiKey }) => {
         <Button
           fullWidth
           variant='contained'
-          color='primary'
+          sx={{
+            bgcolor: indigo[600],
+            '&:hover': {
+              bgcolor: indigo[500],
+            },
+          }}
           onClick={showWidget}
           endIcon={<CameraAltIcon />}
         >
