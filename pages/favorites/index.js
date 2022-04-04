@@ -15,18 +15,24 @@ import Stack from '@mui/material/Stack'
 import { Link } from 'react-scroll'
 
 const FavoritesPage = () => {
-  const [page, setPage] = React.useState(1)
-  const [pageCount, setPageCount] = React.useState(0)
+  const [favoritesData, setFavoritesData] = useState([])
 
-  const handleChange = (event, value) => {
-    setPage(value)
-  }
+  const ITEMS_PER_PAGE = 6
+
+  const [page, setPage] = useState(1)
+  const [pageCount, setPageCount] = useState(1)
 
   const ctxFavoritesPropertyListContext = useFavoritesPropertiesList()
 
-  const [favoritesData, setFavoritesData] = useState([])
+  const [items, setItems] = useState(favoritesData.slice(0, ITEMS_PER_PAGE))
 
   const [loading, setLoading] = useState(true)
+
+  const handleChange = (event, value) => {
+    setPage(value)
+    const skip = (value - 1) * ITEMS_PER_PAGE
+    setItems(favoritesData.slice(skip, skip + ITEMS_PER_PAGE))
+  }
 
   useEffect(() => {
     const listOfIdsLocalStorage = JSON.parse(localStorage.getItem('favorites'))
@@ -43,13 +49,18 @@ const FavoritesPage = () => {
 
     if (listOfIds.length > 0) {
       axios
-        .post(`/api/properties-from-id-list?page=${page}`, {
+        .post(`/api/properties-from-id-list`, {
           listOfIds,
         })
         .then((result) => {
           setFavoritesData(result.data.items)
-          setPageCount(result.data.pagination.pageCountRoundUp)
           setLoading(false)
+
+          const count = result.data.items.length
+          setPageCount(Math.ceil(count / ITEMS_PER_PAGE))
+          if (page === 1) {
+            setItems(result.data.items.slice(0, ITEMS_PER_PAGE))
+          }
         })
     } else {
       setFavoritesData([])
@@ -68,7 +79,7 @@ const FavoritesPage = () => {
       ) : (
         <>
           <Box id='propertyCardListStart' />
-          <PropertyCardList data={favoritesData} />
+          <PropertyCardList data={items} />
           {pageCount > 1 && (
             <Stack spacing={2} mx={'auto'} my={2}>
               <Link
@@ -76,7 +87,7 @@ const FavoritesPage = () => {
                 smooth={true}
                 duration={1000}
                 offset={-5}
-                delay={400}
+                delay={200}
               >
                 <Pagination
                   count={pageCount}
