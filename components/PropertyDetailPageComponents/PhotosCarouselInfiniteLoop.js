@@ -13,17 +13,7 @@ import { Box } from '@mui/system'
 import Image from 'next/image'
 import useMediaQuery from '@mui/material/useMediaQuery'
 
-const imgList = [
-  '/demo-house/demo-house-0.jpg',
-  '/demo-house/demo-house-1.jpg',
-  '/demo-house/demo-house-2.jpg',
-  '/demo-house/demo-house-3.jpg',
-  '/demo-house/demo-house-4.jpg',
-  '/demo-house/demo-house-5.jpg',
-  '/demo-house/demo-house-6.jpg',
-]
-
-export default function PhotosCarouselInfiniteLoop() {
+export default function PhotosCarouselInfiniteLoop({ imgArray }) {
   const matchesLG = useMediaQuery('(min-width:1152px)')
   return (
     <>
@@ -59,7 +49,7 @@ export default function PhotosCarouselInfiniteLoop() {
           modules={[Pagination, Navigation]}
           className='mySwiper'
         >
-          {imgList.map((img) => (
+          {imgArray.map((img) => (
             <SwiperSlide key={img}>
               <Box sx={{ width: '100%', height: '100%', position: 'relative' }}>
                 <Image

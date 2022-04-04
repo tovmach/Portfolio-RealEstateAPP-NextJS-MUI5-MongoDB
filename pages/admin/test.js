@@ -5,7 +5,7 @@ import { Box } from '@mui/material'
 import axios from 'axios'
 import { useEffect } from 'react'
 
-const test = () => {
+const TestPage = () => {
   useEffect(() => {
     axios.get('/api/get-list-img-from-id').then((result) => console.log(result))
   }, [])
@@ -23,4 +23,4 @@ const test = () => {
   )
 }
 
-export default test
+export default TestPage
