@@ -9,6 +9,14 @@ import Select from '@mui/material/Select'
 import Box from '@mui/material/Box'
 import { amber } from '@mui/material/colors'
 import NavigateNextIcon from '@mui/icons-material/NavigateNext'
+import {
+  typeList,
+  operationList,
+  locationList,
+} from '../../utils/selectMenuDataArrays'
+import { useEffect } from 'react'
+import numbersToWords from '../../utils/numbersToWords'
+import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter'
 
 const CreatePropertyForm = ({
   operation,
@@ -30,21 +38,41 @@ const CreatePropertyForm = ({
   description,
   setDescription,
   onSubmitHandler,
-  setImg,
 }) => {
-  const operationList = [
-    { text: 'Sell', value: 'buy' },
-    { text: 'Rent', value: 'rent' },
-  ]
+  function randomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
+  }
 
-  const typeList = [
-    { text: 'Villa', value: 'villa' },
-    { text: 'Apartment', value: 'apartment' },
-    { text: 'Townhouse', value: 'townhouse' },
-    { text: 'Commercial', value: 'commercial' },
-    { text: 'Penthouse', value: 'penthouse' },
-    { text: 'Plot', value: 'plot' },
-  ]
+  const amazingSynonyms = ['amazing', 'stunning', 'awesome']
+
+  useEffect(() => {
+    if (
+      operation.length > 0 &&
+      type.length > 0 &&
+      price.length > 0 &&
+      city.length > 0 &&
+      livingArea.length > 0 &&
+      plot.length > 0 &&
+      bedroom.length > 0 &&
+      bathroom.length > 0
+    ) {
+      setDescription(
+        `This ${
+          amazingSynonyms[randomNumber(0, amazingSynonyms.length)]
+        } ${type} at the price of ${numbersToWords(
+          price
+        )} euros is located in ${capitalizeFirstLetter(
+          city
+        )} whit a living area of ${numbersToWords(livingArea)} square meters ${
+          plot && `and ${numbersToWords(plot)} of plot`
+        } it has a total of ${numbersToWords(bedroom)} ${
+          bedroom > 1 ? 'bedrooms' : 'bedroom'
+        } and ${numbersToWords(bathroom)} ${
+          bedroom > 1 ? 'bathrooms' : 'bathroom'
+        }.`
+      )
+    }
+  }, [operation, type, price, city, livingArea, plot, bedroom, bathroom])
 
   return (
     <>
@@ -105,16 +133,24 @@ const CreatePropertyForm = ({
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              autoComplete='off'
-              label='City'
-              variant='outlined'
-              value={city}
-              onChange={(e) => {
-                setCity(e.target.value)
-              }}
-            />
+            <Box sx={{ minWidth: 240 }}>
+              <FormControl fullWidth>
+                <InputLabel>City</InputLabel>
+                <Select
+                  value={city}
+                  label='City'
+                  onChange={(e) => {
+                    setCity(e.target.value)
+                  }}
+                >
+                  {locationList.map((item) => (
+                    <MenuItem key={item.value} value={item.value}>
+                      {item.text}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -166,6 +202,16 @@ const CreatePropertyForm = ({
           </Grid>
           <Grid item xs={12}>
             <TextField
+              disabled={
+                operation.length === 0 ||
+                type.length === 0 ||
+                price.length === 0 ||
+                city.length === 0 ||
+                livingArea.length === 0 ||
+                plot.length === 0 ||
+                bedroom.length === 0 ||
+                bathroom.length === 0
+              }
               fullWidth
               autoComplete='off'
               label='Description'
@@ -178,6 +224,17 @@ const CreatePropertyForm = ({
           </Grid>
           <Grid item xs>
             <Button
+              disabled={
+                operation.length === 0 ||
+                type.length === 0 ||
+                price.length === 0 ||
+                city.length === 0 ||
+                livingArea.length === 0 ||
+                plot.length === 0 ||
+                bedroom.length === 0 ||
+                bathroom.length === 0 ||
+                description.length === 0
+              }
               fullWidth
               variant='contained'
               onClick={onSubmitHandler}

@@ -12,7 +12,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 
 const MediaUpload = ({ id, cloudName, apiKey }) => {
-  const [img, setImg] = useState()
+  const [img, setImg] = useState('')
 
   const router = useRouter()
 
@@ -33,6 +33,7 @@ const MediaUpload = ({ id, cloudName, apiKey }) => {
       <Container maxWidth='sm'>
         <Typography
           sx={{
+            color: 'primary.main',
             textAlign: 'center',
             mb: 1,
             fontSize: { xs: '1.5rem', sm: '2rem', md: '2.5rem' },
@@ -61,6 +62,7 @@ const MediaUpload = ({ id, cloudName, apiKey }) => {
 
       <Container maxWidth='sm'>
         <Button
+          disabled={img.length === 0}
           fullWidth
           onClick={onSubmitHandler}
           variant='contained'

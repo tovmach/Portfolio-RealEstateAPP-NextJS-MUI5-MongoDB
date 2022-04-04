@@ -9,6 +9,11 @@ import Select from '@mui/material/Select'
 import Box from '@mui/material/Box'
 import { amber } from '@mui/material/colors'
 import SendIcon from '@mui/icons-material/Send'
+import {
+  typeList,
+  operationList,
+  locationList,
+} from '../../utils/selectMenuDataArrays'
 
 const PropertyForm = ({
   operation,
@@ -33,20 +38,6 @@ const PropertyForm = ({
   img,
   setImg,
 }) => {
-  const operationList = [
-    { text: 'Sell', value: 'buy' },
-    { text: 'Rent', value: 'rent' },
-  ]
-
-  const typeList = [
-    { text: 'Villa', value: 'villa' },
-    { text: 'Apartment', value: 'apartment' },
-    { text: 'Townhouse', value: 'townhouse' },
-    { text: 'Commercial', value: 'commercial' },
-    { text: 'Penthouse', value: 'penthouse' },
-    { text: 'Plot', value: 'plot' },
-  ]
-
   return (
     <>
       <Container maxWidth='sm'>
@@ -104,18 +95,25 @@ const PropertyForm = ({
               }}
             />
           </Grid>
-
           <Grid item xs={12} sm={6}>
-            <TextField
-              fullWidth
-              autoComplete='off'
-              label='City'
-              variant='outlined'
-              value={city}
-              onChange={(e) => {
-                setCity(e.target.value)
-              }}
-            />
+            <Box sx={{ minWidth: 240 }}>
+              <FormControl fullWidth>
+                <InputLabel>City</InputLabel>
+                <Select
+                  value={city}
+                  label='City'
+                  onChange={(e) => {
+                    setCity(e.target.value)
+                  }}
+                >
+                  {locationList.map((item) => (
+                    <MenuItem key={item.value} value={item.value}>
+                      {item.text}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
           </Grid>
           <Grid item xs={12} sm={6}>
             <TextField
@@ -191,6 +189,18 @@ const PropertyForm = ({
           </Grid>
           <Grid item xs>
             <Button
+              disabled={
+                operation.length === 0 ||
+                type.length === 0 ||
+                price.length === 0 ||
+                city.length === 0 ||
+                livingArea.length === 0 ||
+                plot.length === 0 ||
+                bedroom.length === 0 ||
+                bathroom.length === 0 ||
+                description.length === 0 ||
+                img.length === 0
+              }
               fullWidth
               variant='contained'
               onClick={onSubmitHandler}
