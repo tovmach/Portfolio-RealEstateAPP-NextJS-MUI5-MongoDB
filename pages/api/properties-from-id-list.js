@@ -25,7 +25,6 @@ export default async function handler(req, res) {
       const item = items.find((item) => item._id === listOfIds[id])
       itemsOrder.push(item)
     }
-    console.log(itemsOrder)
 
     return res.status(200).send({ items: itemsOrder })
   } else {

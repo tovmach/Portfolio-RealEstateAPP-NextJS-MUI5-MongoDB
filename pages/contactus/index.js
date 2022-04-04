@@ -16,17 +16,26 @@ import Stack from '@mui/material/Stack'
 import { Link } from 'react-scroll'
 
 const ContactUsPage = () => {
-  const [page, setPage] = React.useState(1)
-  const [pageCount, setPageCount] = React.useState(0)
+  const [contactedPropertiesData, setContactedPropertiesData] = useState([])
+
+  const ITEMS_PER_PAGE = 6
+
+  const [page, setPage] = useState(1)
+  const [pageCount, setPageCount] = useState(1)
+
+  const ctxContactedPropertiesList = useContactedPropertiesList()
+
+  const [items, setItems] = useState(
+    contactedPropertiesData.slice(0, ITEMS_PER_PAGE)
+  )
+
+  const [loading, setLoading] = useState(true)
 
   const handleChange = (event, value) => {
     setPage(value)
+    const skip = (value - 1) * ITEMS_PER_PAGE
+    setItems(contactedPropertiesData.slice(skip, skip + ITEMS_PER_PAGE))
   }
-  const ctxContactedPropertiesList = useContactedPropertiesList()
-
-  const [contactedPropertiesData, setContactedPropertiesData] = useState([])
-
-  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const listOfIdsLocalStorage = JSON.parse(
@@ -50,8 +59,13 @@ const ContactUsPage = () => {
         })
         .then((result) => {
           setContactedPropertiesData(result.data.items)
-          setPageCount(result.data.pagination.pageCountRoundUp)
           setLoading(false)
+
+          const count = result.data.items.length
+          setPageCount(Math.ceil(count / ITEMS_PER_PAGE))
+          if (page === 1) {
+            setItems(result.data.items.slice(0, ITEMS_PER_PAGE))
+          }
         })
     } else {
       setContactedPropertiesData([])
@@ -82,7 +96,7 @@ const ContactUsPage = () => {
       ) : (
         <>
           <Box id='propertyCardListStart' />
-          <PropertyCardList data={contactedPropertiesData} />
+          <PropertyCardList data={items} />
           {pageCount > 1 && (
             <Stack spacing={2} mx={'auto'} my={2}>
               <Link
@@ -90,7 +104,7 @@ const ContactUsPage = () => {
                 smooth={true}
                 duration={1000}
                 offset={-5}
-                delay={400}
+                delay={200}
               >
                 <Pagination
                   count={pageCount}
