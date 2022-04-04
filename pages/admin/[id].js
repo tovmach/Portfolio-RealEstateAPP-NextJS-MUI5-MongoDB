@@ -26,6 +26,7 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
   const [plot, setPlot] = useState('')
   const [bedroom, setBedroom] = useState('')
   const [bathroom, setBathroom] = useState('')
+  const [img, setImg] = useState('')
   const [description, setDescription] = useState('')
 
   useEffect(() => {
@@ -56,6 +57,9 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
     if (data.description) {
       setDescription(data.description)
     }
+    if (data.img) {
+      setImg(data.img)
+    }
   }, [])
 
   const onSubmitHandler = () => {
@@ -71,7 +75,7 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
         bedroom,
         bathroom,
         description,
-        img: '/villa.jpg',
+        img,
       })
       .then((response) => {
         setOperation('')
@@ -83,6 +87,7 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
         setBedroom('')
         setBathroom('')
         setDescription('')
+        setImg('')
         // router.push('/admin')
       })
   }
@@ -120,6 +125,8 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
         setBathroom={setBathroom}
         description={description}
         setDescription={setDescription}
+        img={img}
+        setImg={setImg}
         onSubmitHandler={onSubmitHandler}
       />
 

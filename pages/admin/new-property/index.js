@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { useRouter } from 'next/router'
-import PropertyForm from '../../../components/adminPageComponents/PropertyForm'
+import CreatePropertyForm from '../../../components/adminPageComponents/CreatePropertyForm'
 
 const NewProperty = () => {
   const [operation, setOperation] = useState('')
@@ -66,7 +66,7 @@ const NewProperty = () => {
       >
         Add new Property
       </Typography>
-      <PropertyForm
+      <CreatePropertyForm
         operation={operation}
         setOperation={setOperation}
         type={type}

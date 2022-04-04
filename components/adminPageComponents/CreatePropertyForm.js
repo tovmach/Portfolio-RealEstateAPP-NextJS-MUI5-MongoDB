@@ -8,9 +8,9 @@ import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import Box from '@mui/material/Box'
 import { amber } from '@mui/material/colors'
-import SendIcon from '@mui/icons-material/Send'
+import NavigateNextIcon from '@mui/icons-material/NavigateNext'
 
-const PropertyForm = ({
+const CreatePropertyForm = ({
   operation,
   setOperation,
   type,
@@ -30,7 +30,6 @@ const PropertyForm = ({
   description,
   setDescription,
   onSubmitHandler,
-  img,
   setImg,
 }) => {
   const operationList = [
@@ -169,18 +168,6 @@ const PropertyForm = ({
             <TextField
               fullWidth
               autoComplete='off'
-              label='Image Link'
-              variant='outlined'
-              value={img}
-              onChange={(e) => {
-                setImg(e.target.value)
-              }}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              fullWidth
-              autoComplete='off'
               label='Description'
               variant='outlined'
               onChange={(e) => setDescription(e.target.value)}
@@ -200,9 +187,9 @@ const PropertyForm = ({
                   bgcolor: amber[600],
                 },
               }}
-              endIcon={<SendIcon />}
+              endIcon={<NavigateNextIcon />}
             >
-              Submit
+              Next
             </Button>
           </Grid>
         </Grid>
@@ -211,4 +198,4 @@ const PropertyForm = ({
   )
 }
 
-export default PropertyForm
+export default CreatePropertyForm

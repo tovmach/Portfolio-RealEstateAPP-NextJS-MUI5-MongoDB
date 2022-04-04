@@ -1,27 +1,6 @@
 import { createTheme } from '@mui/material'
 
 export default createTheme({
-  // components: {
-  //   MuiSelect: {
-  //     // variants: [
-  //     //   {
-  //     //     props: { variant: 'white' },
-  //     //     style: {},
-  //     //   },
-  //     // ],
-  //     styleOverrides: {
-  //       icon: {
-  //         color: 'white',
-  //       },
-  //       outlined: {
-  //         color: 'white',
-  //       },
-  //       notchedOutline: {
-  //         borderColor: 'red',
-  //       },
-  //     },
-  //   },
-  // },
   breakpoints: {
     values: {
       xs: 0,
