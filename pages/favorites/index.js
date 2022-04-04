@@ -65,7 +65,7 @@ const FavoritesPage = () => {
     } else {
       setFavoritesData([])
     }
-  }, [ctxFavoritesPropertyListContext.favorites, page])
+  }, [])
 
   return (
     <>
