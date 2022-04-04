@@ -14,6 +14,7 @@ import { Box } from '@mui/material'
 import Link from '../../components/Link'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import { Button } from '@mui/material'
+import Image from 'next/image'
 
 const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
   const router = useRouter()
@@ -28,6 +29,7 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
   const [bathroom, setBathroom] = useState('')
   const [img, setImg] = useState('')
   const [description, setDescription] = useState('')
+  const [updatedSuccess, setUpdatedSuccess] = useState(false)
 
   useEffect(() => {
     if (data.operation) {
@@ -88,6 +90,7 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
         setBathroom('')
         setDescription('')
         setImg('')
+        setUpdatedSuccess(true)
         // router.push('/admin')
       })
   }
@@ -106,29 +109,44 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
           Back
         </Button>
       </Container>
-      <PropertyForm
-        operation={operation}
-        setOperation={setOperation}
-        type={type}
-        setType={setType}
-        price={price}
-        setPrice={setPrice}
-        city={city}
-        setCity={setCity}
-        livingArea={livingArea}
-        setLivingArea={setLivingArea}
-        plot={plot}
-        setPlot={setPlot}
-        bedroom={bedroom}
-        setBedroom={setBedroom}
-        bathroom={bathroom}
-        setBathroom={setBathroom}
-        description={description}
-        setDescription={setDescription}
-        img={img}
-        setImg={setImg}
-        onSubmitHandler={onSubmitHandler}
-      />
+      {updatedSuccess ? (
+        <>
+          <Image
+            src={'/webMedia/success.svg'}
+            width={500}
+            height={320}
+            objectFit='contain' // or objectFit="cover"
+            alt={'updated successfully'}
+          />
+          <Box sx={{ textAlign: 'center', color: '#58585D', mt: 2 }}>
+            Property updated successfully!
+          </Box>
+        </>
+      ) : (
+        <PropertyForm
+          operation={operation}
+          setOperation={setOperation}
+          type={type}
+          setType={setType}
+          price={price}
+          setPrice={setPrice}
+          city={city}
+          setCity={setCity}
+          livingArea={livingArea}
+          setLivingArea={setLivingArea}
+          plot={plot}
+          setPlot={setPlot}
+          bedroom={bedroom}
+          setBedroom={setBedroom}
+          bathroom={bathroom}
+          setBathroom={setBathroom}
+          description={description}
+          setDescription={setDescription}
+          img={img}
+          setImg={setImg}
+          onSubmitHandler={onSubmitHandler}
+        />
+      )}
 
       <Box sx={{ mb: 2 }}></Box>
 
