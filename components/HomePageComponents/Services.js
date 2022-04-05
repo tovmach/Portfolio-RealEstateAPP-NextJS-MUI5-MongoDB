@@ -10,6 +10,7 @@ const Services = () => {
     <>
       <Container maxWidth='lg'>
         <Grid
+          id='services'
           container
           spacing={2}
           alignItems={'center'}

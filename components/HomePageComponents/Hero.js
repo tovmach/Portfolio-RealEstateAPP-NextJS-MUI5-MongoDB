@@ -4,7 +4,7 @@ import Button from '@mui/material/Button'
 import { Box, Container } from '@mui/material'
 import Image from 'next/image'
 import Link from '../Link'
-
+import { Link as ScrollLink } from 'react-scroll'
 const Hero = () => {
   return (
     <>
@@ -63,13 +63,20 @@ const Hero = () => {
                 </Button>
               </Grid>
               <Grid item>
-                <Button
-                  variant='contained'
-                  color='secondary'
-                  sx={{ color: 'white' }}
+                <ScrollLink
+                  to='services'
+                  smooth={true}
+                  duration={1000}
+                  offset={-5}
                 >
-                  Learn More
-                </Button>
+                  <Button
+                    variant='contained'
+                    color='secondary'
+                    sx={{ color: 'white' }}
+                  >
+                    Learn More
+                  </Button>{' '}
+                </ScrollLink>
               </Grid>
             </Grid>
           </Grid>

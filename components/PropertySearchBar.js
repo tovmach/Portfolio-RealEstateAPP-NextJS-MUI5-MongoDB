@@ -10,11 +10,15 @@ import { useEffect } from 'react'
 import { CircularProgress } from '@mui/material'
 import {
   locationList,
-  operationList,
   typeList,
   buyPriceList,
   rentPriceList,
 } from '../utils/selectMenuDataArrays'
+
+const operationList = [
+  { text: 'Buy', value: 'buy' },
+  { text: 'Rent', value: 'rent' },
+]
 
 const PropertySearchBar = ({
   operationFromQuery,

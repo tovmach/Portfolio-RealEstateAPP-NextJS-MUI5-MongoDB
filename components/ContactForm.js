@@ -149,6 +149,7 @@ const ContactForm = ({ data, setContactButtonActiv }) => {
         </Grid>
         <Grid item xs={12} sm={6} md={4}>
           <TextField
+            type='tel'
             required
             fullWidth
             autoComplete='off'
