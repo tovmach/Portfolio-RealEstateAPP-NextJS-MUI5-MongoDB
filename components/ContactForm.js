@@ -68,9 +68,10 @@ const ContactForm = ({ data, setContactButtonActiv }) => {
         break
       case 'phone':
         setPhone(event.target.value)
-        valid = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$/.test(
-          event.target.value
-        )
+        valid =
+          /^\+\(?([0-9]{2,5})\)?[-. ]?([0-9]{2,5})[-. ]?([0-9]{2,5})$/.test(
+            event.target.value
+          )
 
         if (!valid) {
           setPhoneHelper('Invalid phone')
