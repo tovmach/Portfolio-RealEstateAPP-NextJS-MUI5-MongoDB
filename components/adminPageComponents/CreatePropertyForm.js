@@ -52,19 +52,20 @@ const CreatePropertyForm = ({
       price.length > 0 &&
       city.length > 0 &&
       livingArea.length > 0 &&
-      plot.length > 0 &&
       bedroom.length > 0 &&
       bathroom.length > 0
     ) {
       setDescription(
         `This ${
           amazingSynonyms[randomNumber(0, amazingSynonyms.length)]
-        } ${type} at the price of ${numbersToWords(
+        } ${type} for ${
+          operation === 'buy' ? 'sale' : 'rent'
+        } at the price of ${numbersToWords(
           price
         )} euros is located in ${capitalizeFirstLetter(
           city
         )} whit a living area of ${numbersToWords(livingArea)} square meters ${
-          plot && `and ${numbersToWords(plot)} of plot`
+          plot && `and ${numbersToWords(plot)} square meters of plot`
         } it has a total of ${numbersToWords(bedroom)} ${
           bedroom > 1 ? 'bedrooms' : 'bedroom'
         } and ${numbersToWords(bathroom)} ${
@@ -208,7 +209,6 @@ const CreatePropertyForm = ({
                 price.length === 0 ||
                 city.length === 0 ||
                 livingArea.length === 0 ||
-                plot.length === 0 ||
                 bedroom.length === 0 ||
                 bathroom.length === 0
               }
