@@ -15,6 +15,7 @@ import Link from '../../components/Link'
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos'
 import { Button } from '@mui/material'
 import Image from 'next/image'
+import { getSession } from 'next-auth/react'
 
 const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
   const router = useRouter()
@@ -169,6 +170,17 @@ const PropertyEditPage = ({ data, id, cloudName, apiKey }) => {
 export default PropertyEditPage
 
 export const getServerSideProps = async (ctx) => {
+  const session = await getSession({ req: ctx.req })
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/admin/login',
+        permanent: false,
+      },
+    }
+  }
+
   const id = ctx.params.id
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME
   const apiKey = process.env.CLOUDINARY_API_KEY

@@ -9,9 +9,11 @@ import { useState } from 'react'
 import { Link as ScrollLink } from 'react-scroll'
 import { Box, Typography, Button, Container } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add'
-
+import { signOut } from 'next-auth/react'
+import LogoutIcon from '@mui/icons-material/Logout'
 import { amber } from '@mui/material/colors'
 import Link from '../../components/Link'
+import { getSession } from 'next-auth/react'
 
 const AdminPage = ({ data }) => {
   const ITEMS_PER_PAGE = 6
@@ -29,6 +31,28 @@ const AdminPage = ({ data }) => {
 
   return (
     <>
+      <Box
+        sx={{
+          width: { xs: '100% - 32px', xlg: 1055 },
+          mx: { xs: 2, xlg: 'auto' },
+          mb: 1,
+        }}
+      >
+        <Button
+          sx={{
+            bgcolor: amber[600],
+            '&:hover': {
+              bgcolor: amber[500],
+            },
+          }}
+          variant='contained'
+          endIcon={<LogoutIcon />}
+          onClick={() => signOut()}
+        >
+          Logout
+        </Button>
+      </Box>
+
       <Typography
         component={'h1'}
         textAlign={'center'}
@@ -85,7 +109,18 @@ const AdminPage = ({ data }) => {
 
 export default AdminPage
 
-export const getServerSideProps = async () => {
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession({ req: ctx.req })
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/admin/login',
+        permanent: false,
+      },
+    }
+  }
+
   const connectionString = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTERNAME}.s3o9t.mongodb.net/${process.env.MONGODB_DATABASE}?retryWrites=true&w=majority`
 
   await mongoose.connect(

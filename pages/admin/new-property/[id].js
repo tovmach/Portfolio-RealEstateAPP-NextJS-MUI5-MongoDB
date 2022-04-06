@@ -10,6 +10,7 @@ import { Box } from '@mui/system'
 import AddIcon from '@mui/icons-material/Add'
 import axios from 'axios'
 import { useRouter } from 'next/router'
+import { getSession } from 'next-auth/react'
 
 const MediaUpload = ({ id, cloudName, apiKey }) => {
   const [img, setImg] = useState('')
@@ -79,6 +80,17 @@ const MediaUpload = ({ id, cloudName, apiKey }) => {
 export default MediaUpload
 
 export const getServerSideProps = async (ctx) => {
+  const session = await getSession({ req: ctx.req })
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/admin/login',
+        permanent: false,
+      },
+    }
+  }
+
   const id = ctx.params.id
   const cloudName = process.env.CLOUDINARY_CLOUD_NAME
   const apiKey = process.env.CLOUDINARY_API_KEY

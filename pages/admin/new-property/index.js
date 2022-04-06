@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { useRouter } from 'next/router'
 import CreatePropertyForm from '../../../components/adminPageComponents/CreatePropertyForm'
+import { getSession } from 'next-auth/react'
 
 const NewProperty = () => {
   const [operation, setOperation] = useState('')
@@ -92,3 +93,21 @@ const NewProperty = () => {
 }
 
 export default NewProperty
+
+export const getServerSideProps = async (ctx) => {
+  const session = await getSession({ req: ctx.req })
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: '/admin/login',
+        permanent: false,
+      },
+    }
+  }
+  return {
+    props: {
+      session,
+    },
+  }
+}
