@@ -69,7 +69,7 @@ const ContactForm = ({ data, setContactButtonActiv }) => {
       case 'phone':
         setPhone(event.target.value)
         valid =
-          /^\+\(?([0-9]{2,5})\)?[-. ]?([0-9]{2,5})[-. ]?([0-9]{2,5})$/.test(
+          /^\+?\(?([0-9]{2,5})\)?[-. ]?([0-9]{2,5})[-. ]?([0-9]{2,5})$/.test(
             event.target.value
           )
 
