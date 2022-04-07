@@ -230,7 +230,6 @@ const CreatePropertyForm = ({
                 price.length === 0 ||
                 city.length === 0 ||
                 livingArea.length === 0 ||
-                plot.length === 0 ||
                 bedroom.length === 0 ||
                 bathroom.length === 0 ||
                 description.length === 0
