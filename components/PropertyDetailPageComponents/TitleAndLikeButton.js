@@ -2,10 +2,7 @@ import React from 'react'
 import { Typography, Grid } from '@mui/material'
 import LikeButton from '../likeButton/LikeButton'
 import useMediaQuery from '@mui/material/useMediaQuery'
-
-const capitalizeFirstLetter = (string) => {
-  return string.charAt(0).toUpperCase() + string.slice(1)
-}
+import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter'
 
 const TitleAndLikeButton = ({ type, city, operation, id }) => {
   const matches = useMediaQuery('(min-width:600px)')

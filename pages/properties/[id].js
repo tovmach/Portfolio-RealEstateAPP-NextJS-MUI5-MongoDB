@@ -8,33 +8,46 @@ import PropertyDescription from '../../components/PropertyDetailPageComponents/P
 import PropertyFeatures from '../../components/PropertyDetailPageComponents/PropertyFeatures'
 import PropertyContactForm from '../../components/PropertyDetailPageComponents/PropertyContactForm'
 var cloudinary = require('cloudinary')
+import Head from 'next/head'
+import capitalizeFirstLetter from '../../utils/capitalizeFirstLetter'
 
 const PropertyDetailPage = ({ data, imgArray }) => {
   const item = data[0]
   return (
-    <Box mt={-1}>
-      <PhotosCarouselInfiniteLoop imgArray={imgArray} />
-      <Box
-        sx={{
-          bgcolor: 'white',
-          maxWidth: 1152,
-          borderRadius: '0 0 8px 8px',
-          mx: 'auto',
-        }}
-      >
-        <TitleAndLikeButton
-          type={item.type}
-          city={item.city}
-          operation={item.operation}
-          id={item._id}
-        />
-        <PropertyFeatures item={item} />
-        <PropertyDescription item={item} />
-        <Box mt={4} pb={1}>
-          <PropertyContactForm item={item} />
+    <>
+      <Head>
+        <title>
+          {capitalizeFirstLetter(item.type)} for{' '}
+          {item.operation === 'buy' ? 'Sale' : 'Rent'} in{' '}
+          {capitalizeFirstLetter(item.city)}
+        </title>
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+
+      <Box mt={-1}>
+        <PhotosCarouselInfiniteLoop imgArray={imgArray} />
+        <Box
+          sx={{
+            bgcolor: 'white',
+            maxWidth: 1152,
+            borderRadius: '0 0 8px 8px',
+            mx: 'auto',
+          }}
+        >
+          <TitleAndLikeButton
+            type={item.type}
+            city={item.city}
+            operation={item.operation}
+            id={item._id}
+          />
+          <PropertyFeatures item={item} />
+          <PropertyDescription item={item} />
+          <Box mt={4} pb={1}>
+            <PropertyContactForm item={item} />
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </>
   )
 }
 
