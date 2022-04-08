@@ -19,7 +19,7 @@ export default NextAuth({
           (e) => console.error(e)
         )
 
-        const user = await User.findOne({ user: 'admin' }).lean()
+        const user = await User.findOne({ user: credentials.user }).lean()
 
         if (!user) {
           throw new Error('No user found!')
